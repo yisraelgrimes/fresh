@@ -1,0 +1,51 @@
+{
+  "name": "fresh",
+  "title": "Fresh",
+  "version": "1.0.0",
+  "description": "Part Sass starter and part front-end tool kit.",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yisraelgrimes/fresh"
+  },
+  "keywords": [
+    "npm",
+    "sass",
+    "scss",
+    "pug",
+    "gulp"
+  ],
+  "author": "Yisrael Grimes",
+  "url": "https://yisraelgrimes.com",
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "^2.18.6",
+    "gulp": "^3.9.1",
+    "gulp-archy": "^1.0.3",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-cache": "^0.4.5",
+    "gulp-filetree": "0.0.3",
+    "gulp-html2pug": "0.0.2",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-imagemin": "^3.1.1",
+    "gulp-jshint": "^2.0.4",
+    "gulp-map": "0.0.2",
+    "gulp-parker": "^0.1.4",
+    "gulp-pug": "^3.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sass-lint": "^1.3.2",
+    "gulp-shell": "^0.5.2",
+    "gulp-tabify": "0.0.2",
+    "gulp-todo": "^5.2.0",
+    "gulp-uglify": "^2.0.1",
+    "gulp-useref": "^3.1.2",
+    "jshint": "^2.9.4",
+    "jshint-stylish-ex": "^0.2.0",
+    "require-dir": "^0.3.1",
+    "run-sequence": "^1.2.2"
+  }
+}
