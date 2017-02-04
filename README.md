@@ -95,6 +95,9 @@ cd your-fresh-project && npm install
 - v1.0.0
   - Initial Release
 
+- v1.0.1
+  - (HotFix) Added `gulp-cssnano` to dependencies.
+
 ## Meta
 
 Yisrael Grimes - @GrimesClassic - yisrael@tubemedia.co
