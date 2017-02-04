@@ -1,7 +1,7 @@
 {
   "name": "fresh",
   "title": "Fresh",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Part Sass starter and part front-end tool kit.",
   "main": "index.js",
   "scripts": {
