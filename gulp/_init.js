@@ -1,4 +1,4 @@
-// Fresh v1.0.0
+// Fresh v1.0.2
 //
 // -------------------------------------------------------------------
 
@@ -16,64 +16,43 @@ var runSequence  = require( 'run-sequence'  );  // Sets order for tasks to run
 // -------------------------------------
 // - Initializes the project based on user config settings in '_config.js.'
 // - *Creates dev directory and files
-// - *Compiles SASS/Pug starter files into HTML/CSS
 // - Copies dev-root files into the project root:
 //   - Config for JShint (.stylishcolors)
 //   - *.editorconfig
 //   - *. Starter README.md (and renames the original)
+// - *Initiates the 'gulp default' task.
 if ( optys.pug.usePug ) {
 	gulp.task( 'init', function( done ) {
-		runSequence( ['make:files'],
-		'pug:index', 'sass:compile',
-		'init:rootfiles', done )
-	});
+		runSequence( ['make:dev-files', 'import:rootfiles'],
+		'default', done )
+	} );
 } else {
 	gulp.task( 'init', function( done ) {
-		runSequence( ['make:files'], 'sass:compile',
-		'init:rootfiles', done )
-	});
+		runSequence( ['make:dev-files', 'import:rootfiles'],
+		'default', done )
+	} );
 };
 
 
 // -------------------------------------------------------------------
 
-// Vars to control/print info during 'gulp init'
-
-// User feedback during CLI task
-var devStructureTree = [
-	'echo ./dev',
-	'echo ├── assets',
-	'echo │   ├── fonts',
-	'echo │   ├── images',
-	'echo │   └── main.css',
-	'echo ├── index.html',
-	'echo ├── js',
-	'echo │   ├── main.js',
-	'echo │   └── vendor',
-	'echo ├── pug \*optional',
-	'echo │   └── index.pug',
-	'echo └── sass',
-	'echo     └── main.sass'
-].join("\n");
-
 
 //  If auto-build basic files structure is on/off
 if ( optys.config.basicStructure ) {
-	var buildStructure = [
+	var basicDevStructure = [
 		'echo Creating your ./dev folder structure...',
-		'mkdir dev',
-		'mkdir dev/assets',
-		'mkdir dev/assets/fonts',
-		'mkdir dev/assets/images',
-		'mkdir dev/js',
-		'echo \'// This is your main js file. Import modules from here and link to this file in your html.\' >dev/js/main.js',
-		'mkdir dev/js/vendor',
-		'mkdir dev/sass',
-		'echo \'// This is your main sass import file. It compiles to, and overwrites, dev/assets/main.css.\' >dev/sass/main.sass',
-		devStructureTree
+		'mkdir ' + pathy.dev,
+		'mkdir ' + pathy.assets.dir,
+		'mkdir ' + pathy.fonts.dir,
+		'mkdir ' + pathy.images.dir,
+		'mkdir ' + pathy.js.dir,
+		'echo \'// This is your main js file. Import modules from here and link to this file in your html.\' >' + pathy.js.main,
+		'mkdir ' + pathy.js.vendor.dir,
+		'mkdir ' + pathy.sass.dir,
+		'echo \'// This is your main sass import file. It compiles to, and overwrites, dev/assets/main.css.\' >' + pathy.sass.main
 	].join("\n");
 } else {
-	var buildStructure = [
+	var basicDevStructure = [
 		'echo You can now create your own file structure, but I suggest starting with a ./dev folder...',
 		'echo And make sure you update your file paths in the Global section of your config.js file...',
 		'echo Happy building!'
@@ -82,24 +61,25 @@ if ( optys.config.basicStructure ) {
 
 // -------------------------------------
 
-// If auto-build Pug files is on/off
+// Create Pug file if pug is on
 if ( optys.pug.usePug ) {
-	var buildPugStructure = [
-		'mkdir dev/pug',
-		'echo \'//- This file compiles to, and overwrites, dev/index.html.\', >dev/pug/index.pug'
+	var buildMainIndex = [
+		'mkdir ' + pathy.pug.dir,
+		'echo \'//- This file compiles to, and overwrites, dev/index.html.\', >' + pathy.pug.main,
 	].join("\n");
 } else {
-	var buildPugStructure = [
-		'echo Pug file structure was not created.'
+	var buildMainIndex = [
+		'echo \'\<\!-- This is your main index file. By default, BrowserSync will open this file in your browser. --\>\' >' + pathy.html.main
 	]
 }; // end:if
+
 
 // -------------------------------------
 
 // Builds file sys based on user config or prints info message.
-gulp.task( 'make:files', shell.task( [
-	buildStructure,
-	buildPugStructure
+gulp.task( 'make:dev-files', shell.task( [
+	basicDevStructure,
+	buildMainIndex
 ] ) );
 
 
@@ -134,7 +114,7 @@ if ( optys.config.addReadme ) {
 } else {
 	var addReadme;
 };
-// TODO: Create custom Readme template for the resources repo.
+
 // -------------------------------------
 
 // Used for JShint, moves the file to project root
@@ -146,7 +126,7 @@ var stylishcolors = [
 // -------------------------------------
 
 // Copies files from './gulp/__rsc__' to project root
-gulp.task( 'init:rootfiles', shell.task( [
+gulp.task( 'import:rootfiles', shell.task( [
 	addEditorconfig,
 	stylishcolors,
 	addReadme

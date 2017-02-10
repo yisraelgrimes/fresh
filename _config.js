@@ -1,4 +1,4 @@
-// Fresh v1.0.0
+// Fresh v1.0.2
 //
 // Sets up Global Variables to use in gulp tasks.
 // -------------------------------------------------------------------
@@ -28,10 +28,10 @@
 var basicStructure = true;
 
 // Add .editorconfig file to the project root.
-var addEditorconfig = true;
+var addEditorconfig = false;
 
 // Provide boilerplate README.md file to the root.
-var addReadme = true;
+var addReadme = false;
 
 
 // -------------------------------------
@@ -39,20 +39,31 @@ var addReadme = true;
 // -------------------------------------
 
 // Main Import file-name
-var sassImport = 'main.sass';
+var sassMainImport = 'main.sass';
 
 // Browser Autoprefixer options
+// View all prefixer options at https://github.com/postcss/autoprefixer#options
 var sassPrefixer = [
 	'last 2 versions',
 	'ie >= 9',
 	'and_chr >= 2.3'
 ];
 
+// Lint sass files based on '.sass-lint.yml'. To completely
+// ingore linting, leave the variable set to 'true'.
+var noSassLint = true;
+
+
 // Sass files to not Lint (Default == Normalize)
 var sassLintIgnore = '**/*normalize.+(sass|scss)';
 
-// Completely turn off Sass Linting (Default == False)
-var noSassLint = false;
+
+// -------------------------------------
+// JS
+// -------------------------------------
+
+// Main Import file-name
+var jsMainImport = 'main.js';
 
 
 // -------------------------------------
@@ -82,17 +93,16 @@ var todoTags = [
 // PUG
 // -------------------------------------
 
-// Pug is in the project by default.
-// To remove it, change 'usePug' to 'false'.
-var usePug = true;
+// To use Pug as a template engine, change 'usePug' to 'true'.
+var usePug = false;
 
 // *Ignore the other Pug settings if you're not using Pug
 // Pug output file (index.html) location. (Default == './dev')
 // If changing, make sure you update the BrowserSync location.
-var pugIndexLoc = 'default';
+var pugMainOutputLoc = 'default';
 
 // Other pages: Default to './dev/html' directory
-var pugPagesLoc = 'default';
+var pugPagesOutputLoc = 'default';
 
 
 // -------------------------------------
@@ -100,9 +110,9 @@ var pugPagesLoc = 'default';
 // -------------------------------------
 // Do you want the following files to automatically
 // added to your final 'build' environment?
-var addRobots = true;    // robots.txt
-var addHumans = true;    // humans.txt
-var add404Page = true;   // 404 Page
+var importRobots  = false;    // robots.txt
+var importHumans  = false;    // humans.txt
+var import404Page = false;   // 404 Page
 
 
 // -------------------------------------
@@ -141,12 +151,13 @@ global.pathy = {
 	sass: {
 		dir:  path.dev + '/sass',
 		all:  path.dev + '/sass/**/*.+(sass|scss)',
-		main: path.dev + '/sass/' + sassImport,
+		main: path.dev + '/sass/' + sassMainImport,
 		dest: path.dev + '/assets',
 	},
 
 	html: {
-		all:  path.dev + '/**/*.html'
+		all:  path.dev + '/**/*.html',
+		main: path.dev + '/index.html'
 	},
 
 	pug: {
@@ -158,21 +169,32 @@ global.pathy = {
 	},
 
 	js: {
-		all:    path.dev + '/**/*.js',
 		dir:    path.dev + '/js',
-		vendor: path.dev + '/js/vendor/**/*.js'
+		all:    path.dev + '/**/*.js',
+		main:   path.dev + '/js/' + jsMainImport,
+		vendor: {
+			dir:  path.dev + '/js/vendor',
+			all:  path.dev + '/js/vendor/**/*.js'
+		}
 	},
 
+
 	css: {
-		all:  path.dev + '/assets/*.css'
+		all:   path.dev + '/assets/*.css'
+	},
+
+	assets: {
+		dir:  path.dev + '/assets'
 	},
 
 	images: {
+		dir:  path.dev + '/assets/images',
 		all:  path.dev   + '/assets/images/**/*.+(png|jpg|jpeg|gif|svg|ico)',
 		dest: path.build + '/assets/images'
 	},
 
 	fonts: {
+		dir:  path.dev   + '/assets/fonts',
 		all:  path.dev   + '/assets/fonts/**/*',
 		dest: path.build + '/assets/fonts'
 	}
@@ -196,11 +218,11 @@ if ( noSassLint ) {
 // -------------------------------------
 // PUG Location
 // -------------------------------------
-if ( pugIndexLoc === 'default' ) {
-	var pugIndexLoc = pathy.server;
+if ( pugMainOutputLoc === 'default' ) {
+	var pugMainOutputLoc = pathy.server;
 };
-if ( pugPagesLoc === 'default' ) {
-	var pugPagesLoc = 'html';
+if ( pugPagesOutputLoc === 'default' ) {
+	var pugPagesOutputLoc = 'html';
 };
 
 
@@ -213,9 +235,9 @@ global.optys = {
 		basicStructure: basicStructure,
 		addReadme:  addReadme,
 		addEditorconfig: addEditorconfig,
-		addRobots:  addRobots,
-		addHumans:  addHumans,
-		add404Page: add404Page
+		importRobots:  importRobots,
+		importHumans:  importHumans,
+		import404Page: import404Page
 	},
 
 	imageMin: {          // Image optimization
@@ -267,8 +289,8 @@ global.optys = {
 
 	pug: {
 		usePug:   usePug,        // Turns on/off pug tasks.
-		mainDest:  pugIndexLoc,  // Controls where index.html is compiled to.
-		pagesDest: pugPagesLoc   // Controls where other html pages are compiled to.
+		mainDest:  pugMainOutputLoc,  // Controls where index.html is compiled to.
+		pagesDest: pugPagesOutputLoc   // Controls where other html pages are compiled to.
 	},
 
 	tree: {
