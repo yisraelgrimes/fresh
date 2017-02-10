@@ -73,7 +73,7 @@ cd your-fresh-project && npm install
 
 1. Update your info in the `package.json` file.
 
-2. Go to `./gulp/_config.js` and configure your project in the top section (or use the default settings.)
+2. Go to `./_config.js` and configure your project in the top section (or use the default settings.)
 
 3. Initiate your project:
 
