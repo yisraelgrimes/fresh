@@ -39,7 +39,7 @@ if ( optys.pug.usePug ) {  // Toggle pug tasks on/off from _config.js
 	// -------------------------------------
 	// Tabify/compile pug to html
 	gulp.task( 'pug', function( done ) {
-		runSequence( ['tabify:pug', 'pug:index'], 'pug:pages', done )
+		runSequence( ['tabify:pug'], 'pug:index', 'pug:pages', done )
 	} );
 
 	// Compiles Pug pages into html
