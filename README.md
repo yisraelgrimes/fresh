@@ -105,7 +105,9 @@ cd your-fresh-project && npm install
 	- Turned off Sass-Linting as the default.
   - Made the sass import file user configurable.
   - Converted initial dev files/directories into variables to be controlled through 'config.js'
-
+- v1.0.3 [WIP]
+  - Added ability to import markdown files directly into pug and compile to html. See `jstransformer-markdown-it` in `package.json`.
+    - Todo: add markdown workflow and watcher to the gulp flow.
 
 
 ## Meta
