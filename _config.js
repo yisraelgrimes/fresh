@@ -1,4 +1,4 @@
-// Fresh v1.0.2
+// Fresh v1.0.3
 //
 // Sets up Global Variables to use in gulp tasks.
 // -------------------------------------------------------------------
@@ -16,7 +16,7 @@
 // ├── assets
 // │   ├── fonts
 // │   ├── images
-// │   └── main.css
+// │   └── css
 // ├── index.html
 // ├── js
 // │   ├── main.js
@@ -39,7 +39,7 @@ var addReadme = false;
 // -------------------------------------
 
 // Main Import file-name
-var sassMainImport = 'main.sass';
+var sassMainImport = 'main.scss';
 
 // Browser Autoprefixer options
 // View all prefixer options at https://github.com/postcss/autoprefixer#options
@@ -64,6 +64,20 @@ var sassLintIgnore = '**/*normalize.+(sass|scss)';
 
 // Main Import file-name
 var jsMainImport = 'main.js';
+
+// Lint js files based with jshint.
+// To ingore linting, leave the variable set to 'false'.
+var lintJsArg = false;
+
+// Lint Js Vendor Files (Default == false)
+var lintJsVendorsArg = false;
+
+// Other files to not lint (Default == none or null)
+// You can enter file name ('name.js') or, more explicit, complete path.
+var jsLintIgnore = null;
+
+// Files outside of 'dev/js' that you want to lint (Defaul == none)
+var lintTheseJsFiles = '';
 
 
 // -------------------------------------
@@ -152,7 +166,7 @@ global.pathy = {
 		dir:  path.dev + '/sass',
 		all:  path.dev + '/sass/**/*.+(sass|scss)',
 		main: path.dev + '/sass/' + sassMainImport,
-		dest: path.dev + '/assets',
+		dest: path.dev + '/assets/css',
 	},
 
 	html: {
@@ -180,7 +194,7 @@ global.pathy = {
 
 
 	css: {
-		all:   path.dev + '/assets/*.css'
+		all:   path.dev + '/assets/css/*.css'
 	},
 
 	assets: {
@@ -210,10 +224,22 @@ global.pathy = {
 // SASS Linter
 // -------------------------------------
 if ( noSassLint ) {
-	var allFiles = '**/*.+(sass|scss)';
+	var allSassFiles = '**/*.+(sass|scss)';
 } else {
-	var allFiles = '';
+	var allSassFiles = '';
 };
+
+// -------------------------------------
+// Js Linter
+// -------------------------------------
+
+// Optionally ignores all files in vendor folder
+if ( lintJsVendorsArg ) {
+	var jsVendorsArg = pathy.js.vendor.all;
+} else {
+	var jsVendorsArg = '!' + pathy.js.vendor.all;
+}
+
 
 // -------------------------------------
 // PUG Location
@@ -263,11 +289,24 @@ global.optys = {
 		lint: {
 			files: { ignore: [
 				sassLintIgnore,       // User setting for specific files
-				allFiles              // User setting to toggle all files
+				allSassFiles          // User setting to toggle all files
 			] },
 			configFile: path.tasks + '/__rsc__/.sass-lint.yml'
 		}  // end: lint
 	}, // end: sass
+
+	// Js options
+	js: {
+		lintFiles: lintJsArg,
+		lint: {
+			files: [
+				pathy.js.all,     // All files in the dev/js folder
+				jsVendorsArg,     // Arg to lint vendor files
+				'!**/*' + jsLintIgnore,     // User blacklisted files
+				lintTheseJsFiles  // User whitelisted files
+			],
+		} // end: lint
+	}, // end: js
 
 	// todo options
 	todo: {
