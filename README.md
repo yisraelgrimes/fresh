@@ -94,18 +94,20 @@ cd your-fresh-project && npm install
 
 - v1.0.0
   - Initial Release
-
 - v1.0.1
   - (HotFix) Added `gulp-cssnano` to dependencies.
-
 - v1.0.2
   - Moved the user config file `_config.js` to the project root and added an importer file `_config-import.js` to the `./gulp` tasks directory.
   - Added conditional to `gulp init` that produces an index.html file even when Pug is not being used in the project.
-	- Changed the default option to include Pug in the project to `false`.
-	- Turned off Sass-Linting as the default.
+  - Changed the default option to include Pug in the project to `false`.
+  - Turned off Sass-Linting as the default.
   - Made the sass import file user configurable.
   - Converted initial dev files/directories into variables to be controlled through 'config.js'
-
+- v1.0.3 
+  - Added arguments in `config.js` for user to toggle js linting and control which files to lint.
+- [WIP]
+  - Added ability to import markdown files directly into pug and compile to html. See `jstransformer-markdown-it` in `package.json`.
+    - Todo: add markdown workflow and watcher to the gulp flow (Currently, you have to manually recompile pug or change/save pug to compile the markdown) To include the file in pug, use `include:markdown-it link/to/your/file.md' in your pug file.
 
 
 ## Meta
