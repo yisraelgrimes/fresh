@@ -1,4 +1,4 @@
-// Fresh v1.0.2
+// Fresh v1.0.3
 //
 // Sets up Global Variables to use in gulp tasks.
 // -------------------------------------------------------------------
@@ -93,10 +93,12 @@ var todoTags = [
 // PUG
 // -------------------------------------
 
-// To use Pug as a template engine, change 'usePug' to 'true'.
-var usePug = false;
+// To use Pug as a template engine, change 'usePugArg' to 'true'.
+var usePugArg = true;
 
-// *Ignore the other Pug settings if you're not using Pug
+// *Ignore the other Pug settings if you're not using Pug. You
+// can also remove the 'views' task from default in gulpfile and
+// the 'views' watcher from 'watch.js'. But it's not necessary.
 // Pug output file (index.html) location. (Default == './dev')
 // If changing, make sure you update the BrowserSync location.
 var pugMainOutputLoc = 'default';
@@ -288,7 +290,7 @@ global.optys = {
 	}, // end: todo
 
 	pug: {
-		usePug:   usePug,        // Turns on/off pug tasks.
+		usePugArg:   usePugArg,        // Turns on/off pug tasks.
 		mainDest:  pugMainOutputLoc,  // Controls where index.html is compiled to.
 		pagesDest: pugPagesOutputLoc   // Controls where other html pages are compiled to.
 	},

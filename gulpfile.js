@@ -1,4 +1,4 @@
-// Fresh v1.0.0
+// Fresh v1.0.3
 //
 // -------------------------------------------------------------------
 
@@ -22,7 +22,7 @@ var dir = requireDir( './gulp', { recurse: true });
 // - Server:  Creates local server and sync-refreshes browsers.
 // - Watches: Sass, Pug (*optional), JS, html. Runs tasks and reloads browser.
 gulp.task( 'default', function( done ) {
-	runSequence([ 'sass', 'pug', 'js', 'server' ], 'watch', done )
+	runSequence([ 'sass', 'views', 'server' ], 'watch', done )
 });
 
 
@@ -58,7 +58,6 @@ gulp.task('build', function(done) {
 // - todo
 // - clean:todo
 // - clean:cache
-// - clean:css
 // - clean:build
 // - clean:all
 // - clean:html
@@ -66,9 +65,13 @@ gulp.task('build', function(done) {
 // Development
 // - default
 // - watch
-// - pug:convert
-// - pug
+// - html2pug
+// - tabify:pug
+// - views
 // - sass
+// - sass:compile
+// - test:sass
+// - tabify:sass
 // - js
 // - server
 //

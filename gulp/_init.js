@@ -21,7 +21,7 @@ var runSequence  = require( 'run-sequence'  );  // Sets order for tasks to run
 //   - *.editorconfig
 //   - *. Starter README.md (and renames the original)
 // - *Initiates the 'gulp default' task.
-if ( optys.pug.usePug ) {
+if ( optys.pug.usePugArg ) {
 	gulp.task( 'init', function( done ) {
 		runSequence( ['make:dev-files', 'import:rootfiles'],
 		'default', done )
@@ -62,7 +62,7 @@ if ( optys.config.basicStructure ) {
 // -------------------------------------
 
 // Create Pug file if pug is on
-if ( optys.pug.usePug ) {
+if ( optys.pug.usePugArg ) {
 	var buildMainIndex = [
 		'mkdir ' + pathy.pug.dir,
 		'echo \'//- This file compiles to, and overwrites, dev/index.html.\', >' + pathy.pug.main,
