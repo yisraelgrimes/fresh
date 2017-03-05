@@ -14,3 +14,9 @@ gulp.task( 'test:css', function() {
 	return gulp.src( pathy.css.all )
 		.pipe( parker() )
 } );
+
+
+// Deletes generated css files
+gulp.task( 'clean:css', shell.task( [
+	'rm -rf ' + pathy.css.all
+] ) );

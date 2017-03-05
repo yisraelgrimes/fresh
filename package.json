@@ -1,7 +1,7 @@
 {
   "name": "fresh",
   "title": "Fresh",
-  "version": "1.0.3",
+  "version": "1.0.2",
   "description": "Part Sass starter and part front-end tool kit.",
   "main": "index.js",
   "scripts": {
@@ -48,8 +48,5 @@
     "jshint-stylish-ex": "^0.2.0",
     "require-dir": "^0.3.1",
     "run-sequence": "^1.2.2"
-  },
-  "dependencies": {
-    "jstransformer-markdown-it": "^2.0.0"
   }
 }
