@@ -16,7 +16,7 @@
 // ├── assets
 // │   ├── fonts
 // │   ├── images
-// │   └── main.css
+// │   └── css
 // ├── index.html
 // ├── js
 // │   ├── main.js
@@ -28,18 +28,18 @@
 var basicStructure = true;
 
 // Add .editorconfig file to the project root.
-var addEditorconfig = false;
+var addEditorconfig = true;
 
 // Provide boilerplate README.md file to the root.
-var addReadme = false;
+var addReadme = true;
 
 
 // -------------------------------------
 // SASS
 // -------------------------------------
 
-// Main Import file-name
-var sassMainImport = 'main.sass';
+// Main Import file type. (Default == .scss)
+var sassFileType = 'scss';
 
 // Browser Autoprefixer options
 // View all prefixer options at https://github.com/postcss/autoprefixer#options
@@ -93,7 +93,7 @@ var todoTags = [
 // PUG
 // -------------------------------------
 
-// To use Pug as a template engine, change 'usePugArg' to 'true'.
+// To use Pug as the template/views engine, leave 'usePugArg' to 'true'.
 var usePugArg = true;
 
 // *Ignore the other Pug settings if you're not using Pug. You
@@ -153,8 +153,8 @@ global.pathy = {
 	sass: {
 		dir:  path.dev + '/sass',
 		all:  path.dev + '/sass/**/*.+(sass|scss)',
-		main: path.dev + '/sass/' + sassMainImport,
-		dest: path.dev + '/assets',
+		main: path.dev + '/sass/main.' + sassFileType,
+		dest: path.dev + '/assets/css',
 	},
 
 	html: {
@@ -182,7 +182,7 @@ global.pathy = {
 
 
 	css: {
-		all:   path.dev + '/assets/*.css'
+		all:   path.dev + '/assets/css/*.css'
 	},
 
 	assets: {
@@ -247,6 +247,7 @@ global.optys = {
 	},
 
 	sass: {
+		fileType: sassFileType,
 		// Sass document styling
 		output: {
 			errLogToConsole: true,
