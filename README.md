@@ -105,7 +105,12 @@ cd your-fresh-project && npm install
 	- Turned off Sass-Linting as the default.
   - Made the sass import file user configurable.
   - Converted initial dev files/directories into variables to be controlled through 'config.js'
-
+- v1.0.3
+  - Bugfix: BrowserSync watching/reloading HTML when using Pug.
+	- Basic Dev-Templates auto added with `gulp init` task.
+	  - index.pug/html file with minimal presets.
+		- main.scss/sass
+		- normalize.css (v3.0.3)
 
 
 ## Meta
