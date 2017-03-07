@@ -21,18 +21,10 @@ var runSequence  = require( 'run-sequence'  );  // Sets order for tasks to run
 //   - *.editorconfig
 //   - *. Starter README.md (and renames the original)
 // - *Initiates the 'gulp default' task.
-if ( optys.pug.usePug ) {
-	gulp.task( 'init', function( done ) {
-		runSequence( ['make:dev-files', 'import:rootfiles'],
-		'default', done )
-	} );
-} else {
-	gulp.task( 'init', function( done ) {
-		runSequence( ['make:dev-files', 'import:rootfiles'],
-		'default', done )
-	} );
-};
-
+gulp.task( 'init', function( done ) {
+	runSequence( ['make:dev-files', 'import:rootfiles'],
+	'default', done )
+} );
 
 // -------------------------------------------------------------------
 
@@ -46,10 +38,13 @@ if ( optys.config.basicStructure ) {
 		'mkdir ' + pathy.fonts.dir,
 		'mkdir ' + pathy.images.dir,
 		'mkdir ' + pathy.js.dir,
+		'mkdir ' + pathy.sass.dest,
 		'echo \'// This is your main js file. Import modules from here and link to this file in your html.\' >' + pathy.js.main,
 		'mkdir ' + pathy.js.vendor.dir,
 		'mkdir ' + pathy.sass.dir,
-		'echo \'// This is your main sass import file. It compiles to, and overwrites, dev/assets/main.css.\' >' + pathy.sass.main
+		'echo Downloading normalize.css from the Fresh-Resources repo...',
+		'curl -o normalize-3.0.3.css https://raw.githubusercontent.com/yisraelgrimes/fresh-resources/master/dev-templates/normalize-3.0.3.css',
+		'mv normalize-3.0.3.css ' + pathy.sass.dest,
 	].join("\n");
 } else {
 	var basicDevStructure = [
@@ -62,24 +57,57 @@ if ( optys.config.basicStructure ) {
 // -------------------------------------
 
 // Create Pug file if pug is on
-if ( optys.pug.usePug ) {
-	var buildMainIndex = [
-		'mkdir ' + pathy.pug.dir,
-		'echo \'//- This file compiles to, and overwrites, dev/index.html.\', >' + pathy.pug.main,
-	].join("\n");
+// If user wants to auto-build a basis dev file structure
+if ( optys.config.basicStructure ) {
+	// If user wants to use pug or html as their views engine
+	if ( optys.pug.usePugArg ) {
+		var addIndexFile = [
+			'mkdir ' + pathy.pug.dir,
+			'echo Downloading basic index.pug from the Fresh-Resources repo...',
+			'curl -o index.pug https://raw.githubusercontent.com/yisraelgrimes/fresh-resources/master/dev-templates/index.pug',
+			'mv index.pug ' + pathy.pug.dir,
+		].join("\n");
+	} else {
+		var addIndexFile = [
+			'echo Downloading basic index.html from the Fresh-Resources repo...',
+			'curl -o index.html https://raw.githubusercontent.com/yisraelgrimes/fresh-resources/master/dev-templates/index.html',
+			'mv index.html ' + pathy.server,
+		].join("\n");
+	};
 } else {
-	var buildMainIndex = [
-		'echo \'\<\!-- This is your main index file. By default, BrowserSync will open this file in your browser. --\>\' >' + pathy.html.main
-	]
-}; // end:if
+	var addIndexFile;
+}
+
+// -------------------------------------
+
+// If user wants to auto-build a basis dev file structure
+if ( optys.config.basicStructure ) {
+	// Depends on if user wants to use .scss or .sass
+	if ( optys.sass.fileType == 'scss' ) {
+		var addSassMain = [
+			'echo Downloading basic main.scss from the Fresh-Resources repo...',
+			'curl -o main.scss https://raw.githubusercontent.com/yisraelgrimes/fresh-resources/master/dev-templates/main.scss',
+			'mv main.scss ' + pathy.sass.dir,
+		].join("\n");
+	} else {
+		var addSassMain = [
+			'echo Downloading basic main.sass from the Fresh-Resources repo...',
+			'curl -o main.sass https://raw.githubusercontent.com/yisraelgrimes/fresh-resources/master/dev-templates/main.sass',
+			'mv main.sass ' + pathy.sass.dir,
+		].join("\n");
+	};
+} else {
+	var addSassMain;
+};
 
 
 // -------------------------------------
 
-// Builds file sys based on user config or prints info message.
+// Builds file sys based on user config or prints info message in terminal.
 gulp.task( 'make:dev-files', shell.task( [
 	basicDevStructure,
-	buildMainIndex
+	addIndexFile,
+	addSassMain
 ] ) );
 
 
@@ -92,8 +120,6 @@ if ( optys.config.addEditorconfig ) {
 	var addEditorconfig = [
 		'echo Downloading .editorconfig from the Fresh-Resources repo...',
 		'curl -o .editorconfig https://raw.githubusercontent.com/yisraelgrimes/fresh-resources/master/.editorconfig',
-		// 'echo Adding \'.editorconfig\' to your project root.',
-		// 'cp ' + pathy.gulpRsc + '/.editorconfig ./'
 	].join("\n");
 } else {
 	var addEditorconfig;

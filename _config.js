@@ -1,4 +1,4 @@
-// Fresh v1.0.2
+// Fresh v1.0.3
 //
 // Sets up Global Variables to use in gulp tasks.
 // -------------------------------------------------------------------
@@ -16,7 +16,7 @@
 // ├── assets
 // │   ├── fonts
 // │   ├── images
-// │   └── main.css
+// │   └── css
 // ├── index.html
 // ├── js
 // │   ├── main.js
@@ -28,18 +28,18 @@
 var basicStructure = true;
 
 // Add .editorconfig file to the project root.
-var addEditorconfig = false;
+var addEditorconfig = true;
 
 // Provide boilerplate README.md file to the root.
-var addReadme = false;
+var addReadme = true;
 
 
 // -------------------------------------
 // SASS
 // -------------------------------------
 
-// Main Import file-name
-var sassMainImport = 'main.sass';
+// Main Import file type. (Default == .scss)
+var sassFileType = 'scss';
 
 // Browser Autoprefixer options
 // View all prefixer options at https://github.com/postcss/autoprefixer#options
@@ -93,10 +93,12 @@ var todoTags = [
 // PUG
 // -------------------------------------
 
-// To use Pug as a template engine, change 'usePug' to 'true'.
-var usePug = false;
+// To use Pug as the template/views engine, leave 'usePugArg' to 'true'.
+var usePugArg = true;
 
-// *Ignore the other Pug settings if you're not using Pug
+// *Ignore the other Pug settings if you're not using Pug. You
+// can also remove the 'views' task from default in gulpfile and
+// the 'views' watcher from 'watch.js'. But it's not necessary.
 // Pug output file (index.html) location. (Default == './dev')
 // If changing, make sure you update the BrowserSync location.
 var pugMainOutputLoc = 'default';
@@ -151,8 +153,8 @@ global.pathy = {
 	sass: {
 		dir:  path.dev + '/sass',
 		all:  path.dev + '/sass/**/*.+(sass|scss)',
-		main: path.dev + '/sass/' + sassMainImport,
-		dest: path.dev + '/assets',
+		main: path.dev + '/sass/main.' + sassFileType,
+		dest: path.dev + '/assets/css',
 	},
 
 	html: {
@@ -180,7 +182,7 @@ global.pathy = {
 
 
 	css: {
-		all:   path.dev + '/assets/*.css'
+		all:   path.dev + '/assets/css/*.css'
 	},
 
 	assets: {
@@ -245,6 +247,7 @@ global.optys = {
 	},
 
 	sass: {
+		fileType: sassFileType,
 		// Sass document styling
 		output: {
 			errLogToConsole: true,
@@ -288,7 +291,7 @@ global.optys = {
 	}, // end: todo
 
 	pug: {
-		usePug:   usePug,        // Turns on/off pug tasks.
+		usePugArg:   usePugArg,        // Turns on/off pug tasks.
 		mainDest:  pugMainOutputLoc,  // Controls where index.html is compiled to.
 		pagesDest: pugPagesOutputLoc   // Controls where other html pages are compiled to.
 	},

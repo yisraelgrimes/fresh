@@ -1,4 +1,4 @@
-// Fresh v1.0.0
+// Fresh v1.0.3
 //
 // -------------------------------------------------------------------
 
@@ -12,6 +12,8 @@ var browserSync = require( 'browser-sync'  );  // Live browser reloading
 // Launches browserSync/default web browser from local index file.
 gulp.task( 'server', function() {
 	browserSync( {
-		server: { baseDir: pathy.server }
+		server: { 
+			baseDir: pathy.server 
+		}
 	} )
 } );
