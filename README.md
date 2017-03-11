@@ -111,7 +111,11 @@ cd your-fresh-project && npm install
 	  - index.pug/html file with minimal presets.
 		- main.scss/sass
 		- normalize.css (v3.0.3)
-
+- v1.0.4
+  - Bugfix: Gulp todo returned path errors. - Fixed.
+  - Added `_config.js` to the `gulp todo` blacklist.
+  - Added an admin task `gulp refresh` to remove all files setup when running `gulp init`. (This is mainly to make testing for me easier.)
+  - Changed the `add readme` option in `config` to be turned on by default.
 
 ## Meta
 

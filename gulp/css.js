@@ -1,11 +1,10 @@
-// Fresh v1.0.0
+// Fresh v1.0.4
 //
 // -------------------------------------------------------------------
 
 // Require Plugins
 var gulp    = require( 'gulp'         );  // Umm. The reason we're here?
 var parker  = require( 'gulp-parker'  );  // Auto requires tasks
-var shell   = require( 'gulp-shell'   );  // Terminal Commands in Gulp
 
 // -------------------------------------
 

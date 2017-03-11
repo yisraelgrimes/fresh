@@ -1,4 +1,4 @@
-// Fresh v1.0.3
+// Fresh v1.0.4
 //
 // Sets up Global Variables to use in gulp tasks.
 // -------------------------------------------------------------------
@@ -76,11 +76,15 @@ var todoFilename = 'TODO.md';
 // Location of 'todo' output file
 var todoLoc = './';
 
-// Files to search through
-var todoSource = '**/*.+(sass|scss|js|html|pug)';
-
-// Files to ignore
-var todoIgnore = [ '!node_modules/**/*', '!gulp' ];  // Default: none
+// Files to parse and files to ignore.
+// Default parses the file types in the first line
+// while ignoring 'node_modules' and 'gulp' files.
+var todoSource = [
+	'**/*.+(sass|scss|js|html|pug)',
+	'!node_modules/**/*',
+	'!gulp/**/*',
+	'!_config.js'
+];
 
 // Additional Tags to search for
 var todoTags = [
@@ -274,7 +278,7 @@ global.optys = {
 
 	// todo options
 	todo: {
-		source: [ todoSource, todoIgnore ],    // User setting at top
+		source: todoSource,    // User setting at top
 		output: {
 			filename: todoFilename,
 			customTags: todoTags,
