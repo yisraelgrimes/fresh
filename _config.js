@@ -78,11 +78,12 @@ var todoLoc = './';
 
 // Files to parse and files to ignore.
 // Default parses the file types in the first line
-// while ignoring 'node_modules' and 'gulp' directories.
+// while ignoring 'node_modules' and 'gulp' files.
 var todoSource = [
 	'**/*.+(sass|scss|js|html|pug)',
 	'!node_modules/**/*',
-	'!gulp/**/*'
+	'!gulp/**/*',
+	'!_config.js'
 ];
 
 // Additional Tags to search for
