@@ -119,6 +119,11 @@ cd your-fresh-project && npm install
 - v1.0.5
 	- Added ability to import markdown files directly into pug and compile to html. Added .md files to `gulp watch` that compiles pug on save.
   - Added option to turn linting on/off for Javascript files.
+  - Cleaned up `gulp sass` stream to perform better.
+- v1.0.6 (Work in Progress)
+  - Will be adding download commands for common dev files like `.gitignore`.
+  - Will be added github pages automation
+
 	
 ## Meta
 

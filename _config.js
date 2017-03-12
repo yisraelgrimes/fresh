@@ -51,7 +51,7 @@ var sassPrefixer = [
 
 // Lint sass files based on '.sass-lint.yml'. To completely
 // ingore linting, leave the variable set to 'true'.
-var sassLint = false;
+var lintSass = false;
 
 
 // Sass files to not Lint (Default == Normalize)
@@ -67,7 +67,7 @@ var jsMainImport = 'main.js';
 
 // Lint js files based with jshint.
 // To ingore linting, leave the variable set to 'false'.
-var lintJs = true;
+var lintJs = false;
 
 // Lint Js Vendor Files (Default == false)
 // 'lintJs' needs to be turned on for this option to work
@@ -236,7 +236,7 @@ global.pathy = {
 // -------------------------------------
 // SASS Linter
 // -------------------------------------
-if ( sassLint ) {
+if ( lintSass ) {
 	var allFiles = '';
 } else {
 	var allFiles = '**/*.+(sass|scss)';
@@ -300,6 +300,8 @@ global.optys = {
 			// browsers: ['last 2 versions', 'ie >= 9', 'and_chr >= 2.3']
 		},
 		// Sass Linting
+		lintFiles: lintSass,
+
 		lint: {
 			files: { ignore: [
 				sassLintIgnore,       // User setting for specific files

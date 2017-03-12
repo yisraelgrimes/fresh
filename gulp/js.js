@@ -39,8 +39,7 @@ if ( optys.js.lintFiles ) {
 		runSequence( ['tabify-js'], 'lint-js', done )
 	} );
 } else {
-	gulp.task( 'js', ['tabify-js'], function( done ) {
-	} );
+	gulp.task( 'js', [ 'tabify-js' ] );
 };
 
 
