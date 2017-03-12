@@ -152,22 +152,23 @@ global.pathy = {
 	dev:     path.dev,                // Dev directory
 	build:   path.build,              // Production Site
 
-	server: path.dev,                 // BrowserSync
+	server:  path.dev,                 // BrowserSync
 
 	sass: {
-		dir:  path.dev + '/sass',
-		all:  path.dev + '/sass/**/*.+(sass|scss)',
-		main: path.dev + '/sass/main.' + sassFileType,
-		dest: path.dev + '/assets/css',
+		dir:   path.dev + '/sass',
+		all:   path.dev + '/sass/**/*.+(sass|scss)',
+		main:  path.dev + '/sass/main.' + sassFileType,
+		dest:  path.dev + '/assets/css',
 	},
 
 	html: {
-		all:  path.dev + '/**/*.html',
-		main: path.dev + '/index.html'
+		all:   path.dev + '/**/*.html',
+		main:  path.dev + '/index.html',
+		pages: path.dev + '/html'
 	},
 
 	content: {
-		all: path.dev + '/**/*.md'
+		all:   path.dev + '/**/*.md'
 	},
 
 	pug: {
@@ -232,7 +233,7 @@ if ( pugMainOutputLoc === 'default' ) {
 	var pugMainOutputLoc = pathy.server;
 };
 if ( pugPagesOutputLoc === 'default' ) {
-	var pugPagesOutputLoc = 'html';
+	var pugPagesOutputLoc = pathy.html.pages;
 };
 
 

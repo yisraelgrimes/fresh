@@ -47,6 +47,7 @@ gulp.task('build', function(done) {
 // -------------------------------------
 // Available Tasks
 // -------------------------------------
+// TODO: **Fresh** - Update available gulp tasks
 
 // By default, Fresh is designed to be super easy to integrate into your current workflow. Out of the box, it comes with ....
 //
