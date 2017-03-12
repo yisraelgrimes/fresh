@@ -1,4 +1,4 @@
-// Fresh v1.0.4
+// Fresh v1.0.5
 //
 // Sets up Global Variables to use in gulp tasks.
 // -------------------------------------------------------------------
@@ -164,6 +164,10 @@ global.pathy = {
 	html: {
 		all:  path.dev + '/**/*.html',
 		main: path.dev + '/index.html'
+	},
+
+	content: {
+		all: path.dev + '/**/*.md'
 	},
 
 	pug: {
