@@ -118,6 +118,7 @@ cd your-fresh-project && npm install
   - Changed the `add readme` option in `config` to be turned on by default.
 - v1.0.5
 	- Added ability to import markdown files directly into pug and compile to html. Added .md files to `gulp watch` that compiles pug on save.
+  - Added option to turn on/off Javascript linting through the config file.
 	
 ## Meta
 

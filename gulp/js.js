@@ -11,16 +11,21 @@ var runSequence  = require( 'run-sequence'  );  // Sets order for tasks to run
 // -------------------------------------
 
 
-// Tabifies and Lints JS using jshint
-gulp.task( 'js', function( done ) {
-	runSequence( ['tabify:js'], 'test:js', done )
-} );
+// Tabifies and Lints JS (optional) using jshint
+if ( optys.js.lintFiles ) {
+	gulp.task( 'js', function( done ) {
+		runSequence( ['tabify:js'], 'test:js', done )
+	} );
+} else {
+	gulp.task( 'js', ['tabify:js'], function( done ) {
+	} );
+};
 
 
 // Lint JS using jshint
 gulp.task( 'test:js', function() {
-	gulp.src( pathy.js.dir + '/*js' ) // Don't lint vendors
-		.pipe( jshint() )
+	gulp.src( optys.js.lint.files ) // User decides files to lint
+		.pipe( jshint( ) )
 		.pipe( jshint.reporter( 'jshint-stylish-ex' ) )
 		// .pipe(browserSync.reload({ stream: true }))
 } );
@@ -32,4 +37,3 @@ gulp.task( 'tabify:js', function () {
 		.pipe( tabify( 2, true ) )
 		.pipe( gulp.dest( pathy.js.dir ) )
 } );
-// TODO: Move tabify options to config

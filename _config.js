@@ -67,17 +67,18 @@ var jsMainImport = 'main.js';
 
 // Lint js files based with jshint.
 // To ingore linting, leave the variable set to 'false'.
-var lintJsArg = false;
+var lintJs = false;
 
 // Lint Js Vendor Files (Default == false)
-var lintJsVendorsArg = false;
+// 'lintJs' needs to be turned on for this option to work
+var lintJsVendors = false;
 
 // Other files to not lint (Default == none or null)
 // You can enter file name ('name.js') or, more explicit, complete path.
-var jsLintIgnore = null;
+var lintJsIgnored = null;
 
 // Files outside of 'dev/js' that you want to lint (Defaul == none)
-var lintTheseJsFiles = '';
+var lintJsExtraFiles = '';
 
 
 // -------------------------------------
@@ -245,7 +246,7 @@ if ( noSassLint ) {
 // -------------------------------------
 
 // Optionally ignores all files in vendor folder
-if ( lintJsVendorsArg ) {
+if ( lintJsVendors ) {
 	var jsVendorsArg = pathy.js.vendor.all;
 } else {
 	var jsVendorsArg = '!' + pathy.js.vendor.all;
@@ -309,13 +310,13 @@ global.optys = {
 
 	// Js options
 	js: {
-		lintFiles: lintJsArg,
+		lintFiles: lintJs,
 		lint: {
 			files: [
 				pathy.js.all,     // All files in the dev/js folder
 				jsVendorsArg,     // Arg to lint vendor files
-				'!**/*' + jsLintIgnore,     // User blacklisted files
-				lintTheseJsFiles  // User whitelisted files
+				'!**/*' + lintJsIgnored,     // User blacklisted files
+				lintJsExtraFiles  // User whitelisted files
 			],
 		} // end: lint
 	}, // end: js
