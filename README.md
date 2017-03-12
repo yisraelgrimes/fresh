@@ -2,28 +2,18 @@
 
 ---
 
-# Fresh Starter Kit
+# Project Name
 
-A starter framework for building web projects using Sass, Gulp, Pug (optional), and some other modern tools. The goal for this starter kit is to be un-opinionated as possible while giving you easlily configured settings, keep things kinda modular, and be educational.
-
+*Add a short description of your project.*
 
 ## Requirements
 
-- [Node/NPM](https://nodejs.org/en/)
-- [LibSass](http://sass-lang.com/libsass)
-- [Gulp](http://gulpjs.com/)
+- List your projects requirements/dependencies
 
 
 ## Features
 
-- Configurable but automated environment setup
-- Live reloading with BrowserSync
-- Sass compiling and Autoprefixer configuration
-- Sass Linting (based on `.sass-lint.yml`
-- Javascript Linting (still need to add lint file)
-- Pug compiling
-- Optimizes final output files
-- The voice of Cleveland Brown (run `gulp boom`)
+- List some of the features here.
 
 
 ## Installation
@@ -73,7 +63,7 @@ cd your-fresh-project && npm install
 
 1. Update your info in the `package.json` file.
 
-2. Go to `./_config.js` and configure your project in the top section (or use the default settings.)
+2. Go to `./gulp/_config.js` and configure your project in the top section (or use the default settings.)
 
 3. Initiate your project:
 
@@ -95,31 +85,6 @@ cd your-fresh-project && npm install
 - v1.0.0
   - Initial Release
 
-- v1.0.1
-  - (HotFix) Added `gulp-cssnano` to dependencies.
-
-- v1.0.2
-  - Moved the user config file `_config.js` to the project root and added an importer file `_config-import.js` to the `./gulp` tasks directory.
-  - Added conditional to `gulp init` that produces an index.html file even when Pug is not being used in the project.
-	- Changed the default option to include Pug in the project to `false`.
-	- Turned off Sass-Linting as the default.
-  - Made the sass import file user configurable.
-  - Converted initial dev files/directories into variables to be controlled through 'config.js'
-- v1.0.3
-  - Bugfix: BrowserSync watching/reloading HTML when using Pug.
-	- Basic Dev-Templates auto added with `gulp init` task.
-	  - index.pug/html file with minimal presets.
-		- main.scss/sass
-		- normalize.css (v3.0.3)
-- v1.0.4
-  - Bugfix: Gulp todo returned path errors. - Fixed.
-  - Added `_config.js` to the `gulp todo` blacklist.
-  - Added an admin task `gulp refresh` to remove all files setup when running `gulp init`. (This is mainly to make testing for me easier.)
-  - Changed the `add readme` option in `config` to be turned on by default.
-- v1.0.5
-	- Added ability to import markdown files directly into pug and compile to html. Added .md files to `gulp watch` that compiles pug on save.
-  - Added option to turn on/off Javascript linting through the config file.
-	
 ## Meta
 
 Yisrael Grimes - @GrimesClassic - yisrael@tubemedia.co

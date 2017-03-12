@@ -51,7 +51,7 @@ var sassPrefixer = [
 
 // Lint sass files based on '.sass-lint.yml'. To completely
 // ingore linting, leave the variable set to 'true'.
-var noSassLint = true;
+var sassLint = false;
 
 
 // Sass files to not Lint (Default == Normalize)
@@ -235,10 +235,10 @@ global.pathy = {
 // -------------------------------------
 // SASS Linter
 // -------------------------------------
-if ( noSassLint ) {
-	var allFiles = '**/*.+(sass|scss)';
-} else {
+if ( sassLint ) {
 	var allFiles = '';
+} else {
+	var allFiles = '**/*.+(sass|scss)';
 };
 
 // -------------------------------------
