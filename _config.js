@@ -67,7 +67,7 @@ var jsMainImport = 'main.js';
 
 // Lint js files based with jshint.
 // To ingore linting, leave the variable set to 'false'.
-var lintJs = false;
+var lintJs = true;
 
 // Lint Js Vendor Files (Default == false)
 // 'lintJs' needs to be turned on for this option to work
@@ -75,7 +75,7 @@ var lintJsVendors = false;
 
 // Other files to not lint (Default == none or null)
 // You can enter file name ('name.js') or, more explicit, complete path.
-var lintJsIgnored = null;
+var lintJsIgnored = '!assets/js/**/*.js';
 
 // Files outside of 'dev/js' that you want to lint (Defaul == none)
 var lintJsExtraFiles = '';
@@ -196,8 +196,9 @@ global.pathy = {
 
 	js: {
 		dir:    path.dev + '/js',
-		all:    path.dev + '/**/*.js',
+		all:    path.dev + '/js/**/*.js',
 		main:   path.dev + '/js/' + jsMainImport,
+		dest:   path.dev + '/assets/js',
 		vendor: {
 			dir:  path.dev + '/js/vendor',
 			all:  path.dev + '/js/vendor/**/*.js'
