@@ -65,6 +65,20 @@ var sassLintIgnore = '**/*normalize.+(sass|scss)';
 // Main Import file-name
 var jsMainImport = 'main.js';
 
+// Lint js files based with jshint.
+// To ingore linting, leave the variable set to 'false'.
+var lintJsArg = false;
+
+// Lint Js Vendor Files (Default == false)
+var lintJsVendorsArg = false;
+
+// Other files to not lint (Default == none or null)
+// You can enter file name ('name.js') or, more explicit, complete path.
+var jsLintIgnore = null;
+
+// Files outside of 'dev/js' that you want to lint (Defaul == none)
+var lintTheseJsFiles = '';
+
 
 // -------------------------------------
 // Todo
@@ -227,6 +241,18 @@ if ( noSassLint ) {
 };
 
 // -------------------------------------
+// Js Linter
+// -------------------------------------
+
+// Optionally ignores all files in vendor folder
+if ( lintJsVendorsArg ) {
+	var jsVendorsArg = pathy.js.vendor.all;
+} else {
+	var jsVendorsArg = '!' + pathy.js.vendor.all;
+};
+
+
+// -------------------------------------
 // PUG Location
 // -------------------------------------
 if ( pugMainOutputLoc === 'default' ) {
@@ -280,6 +306,19 @@ global.optys = {
 			configFile: path.tasks + '/__rsc__/.sass-lint.yml'
 		}  // end: lint
 	}, // end: sass
+
+	// Js options
+	js: {
+		lintFiles: lintJsArg,
+		lint: {
+			files: [
+				pathy.js.all,     // All files in the dev/js folder
+				jsVendorsArg,     // Arg to lint vendor files
+				'!**/*' + jsLintIgnore,     // User blacklisted files
+				lintTheseJsFiles  // User whitelisted files
+			],
+		} // end: lint
+	}, // end: js
 
 	// todo options
 	todo: {
