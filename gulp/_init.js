@@ -17,7 +17,7 @@ var runSequence  = require( 'run-sequence'  );  // Sets order for tasks to run
 // - Initializes the project based on user config settings in '_config.js.'
 // - *Creates dev directory and files
 // - Copies dev-root files into the project root:
-//   - Config for JShint (.stylishcolors)
+//   - Config for JShint (.stylishcolors) *optional
 //   - *.editorconfig
 //   - *. Starter README.md (and renames the original)
 // - *Initiates the 'gulp default' task.
@@ -144,10 +144,14 @@ if ( optys.config.addReadme ) {
 // -------------------------------------
 
 // Used for JShint, moves the file to project root
-var stylishcolors = [
-	'echo Downloading .stylishcolors from the Fresh-Resources repo...',
-	'curl -o .stylishcolors https://raw.githubusercontent.com/yisraelgrimes/fresh-resources/master/.stylishcolors',
-].join("\n");
+if ( optys.js.lintFiles ) {
+	var stylishcolors = [
+		'echo Downloading .stylishcolors from the Fresh-Resources repo...',
+		'curl -o .stylishcolors https://raw.githubusercontent.com/yisraelgrimes/fresh-resources/master/.stylishcolors',
+	].join("\n");
+} else {
+	var stylishcolors;
+};
 
 // -------------------------------------
 

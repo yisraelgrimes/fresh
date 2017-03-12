@@ -18,23 +18,20 @@ var runSequence  = require( 'run-sequence'  );  // Sets order for tasks to run
 // SASS Workflow
 // -------------------------------------
 // Compiles, tabifies, and lints sass
-gulp.task( 'sass', function( done ) {
-	runSequence( ['sass:compile', 'tabify:sass'], 'test:sass', done )
-} );
+// If linter is on/off
+if ( optys.sass.lintFiles ) {
+	gulp.task( 'sass', function( done ) {
+		runSequence( [ 'sass-compile' ], 'lint-sass', done )
+	} );
+} else {
+	gulp.task( 'sass', [ 'sass-compile' ] );
+};
 
 
-// Compiles, formats, prefixes, and lints sass
-gulp.task( 'sass:compile', function() {
-	return gulp.src( pathy.sass.all )
-		.pipe( sass( optys.sass.output ).on( 'error', sass.logError ) )
-		.pipe( autoprefixer( optys.sass.prefixer ) )
-		.pipe( gulp.dest( pathy.sass.dest ) )
-		.pipe( browserSync.reload( { stream: true } ) )
-} );
 
 
 // Lints Sass
-gulp.task( 'test:sass', function () {
+gulp.task( 'lint-sass', function () {
 	return gulp.src( pathy.sass.all )
 		.pipe( sassLint( optys.sass.lint ) )
 		.pipe( sassLint.format() )
@@ -42,12 +39,17 @@ gulp.task( 'test:sass', function () {
 } );
 
 
-// Converts spaces to tabs
-gulp.task( 'tabify:sass', function () {
+
+// Compiles, formats, prefixes, and lints sass
+gulp.task( 'sass-compile', function() {
 	return gulp.src( pathy.sass.all )
 		.pipe( tabify( 2, true ) )
 		.pipe( gulp.dest( pathy.sass.dir ) )
+		.pipe( sass( optys.sass.output ).on( 'error', sass.logError ) )
+		.pipe( autoprefixer( optys.sass.prefixer ) )
+		.pipe( gulp.dest( pathy.sass.dest ) )
+		.pipe( browserSync.reload( { stream: true } ) )
 } );
 
 
-// TODO: test autoprefixer to make sure it works properly
+// Not able to ignore files in sass lint

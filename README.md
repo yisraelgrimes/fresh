@@ -116,7 +116,15 @@ cd your-fresh-project && npm install
   - Added `_config.js` to the `gulp todo` blacklist.
   - Added an admin task `gulp refresh` to remove all files setup when running `gulp init`. (This is mainly to make testing for me easier.)
   - Changed the `add readme` option in `config` to be turned on by default.
+- v1.0.5
+	- Added ability to import markdown files directly into pug and compile to html. Added .md files to `gulp watch` that compiles pug on save.
+  - Added option to turn linting on/off for Javascript files.
+  - Cleaned up `gulp sass` stream to perform better.
+- v1.0.6 (Work in Progress)
+  - Will be adding download commands for common dev files like `.gitignore`.
+  - Will be added github pages automation
 
+	
 ## Meta
 
 Yisrael Grimes - @GrimesClassic - yisrael@tubemedia.co

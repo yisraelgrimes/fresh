@@ -1,5 +1,14 @@
 # Created by https://www.gitignore.io/api/osx,wordpress,sass,codekit
 
+### Fresh Demo ###
+# dev/
+# _config.js
+# .editorconfig
+# .stylishcolors
+# fresh_README.md
+# README.md
+
+
 ### OSX ###
 *.DS_Store
 .AppleDouble

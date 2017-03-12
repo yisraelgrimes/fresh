@@ -13,40 +13,11 @@ var dir = requireDir( './gulp', { recurse: true });
 // -------------------------------------
 
 
-// -------------------------------------
-// Default
-// -------------------------------------
-// - Sass:    Compiles, tabifies, and lints. Outputs css.
-// - Pug:     (*optional) Compiles, tabifies. Outputs html.
-// - JS:      Tabifies and lints.
-// - Server:  Creates local server and sync-refreshes browsers.
-// - Watches: Sass, Pug (*optional), JS, html. Runs tasks and reloads browser.
-gulp.task( 'default', function( done ) {
-	runSequence([ 'sass', 'views', 'server' ], 'watch', done )
-});
-
-
-// -------------------------------------
-// Build
-// -------------------------------------
-// Clean:   Removes 'build' directory and css files.
-// Default: Runs default tasks except for 'server' and 'watch'.
-// Concat:  Concats and minifies js, css, html into 'build' directory.
-// Images:  Optimizes images and copys them to 'build/assets'.
-// Fonts:   Copys fonts to 'build/assets'.
-// Echo:    Prints user-info on making a file tree for documentation.
-gulp.task('build', function(done) {
-	runSequence(
-		'clean:all', 'sass', 'pug', 'js',
-		[ 'concat', 'images', 'fonts' ],
-		'build:rootfiles', 'tree', done
-	)
-});
-
 
 // -------------------------------------
 // Available Tasks
 // -------------------------------------
+// TODO: **Fresh** - Update available gulp tasks
 
 // By default, Fresh is designed to be super easy to integrate into your current workflow. Out of the box, it comes with ....
 //

@@ -1,4 +1,4 @@
-// Fresh v1.0.3
+// Fresh v1.0.5
 //
 // -------------------------------------------------------------------
 // 'gulp watch'
@@ -19,6 +19,7 @@ var browserSync = require( 'browser-sync'  );  // Live browser reloading
 gulp.task( 'watch', function() {
   gulp.watch( pathy.sass.all, ['sass'] )
   gulp.watch( pathy.pug.all, ['views'] )
+  gulp.watch( pathy.content.all, ['views'] )
 	gulp.watch( pathy.js.all, ['js'], browserSync.reload )
   gulp.watch( pathy.html.all, browserSync.reload )
 } );
