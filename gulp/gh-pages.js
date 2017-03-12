@@ -4,44 +4,34 @@
 
 // Require Plugins
 var gulp         = require( 'gulp'          );  // Umm. The reason we're here?
-var ghPages      = require( 'gulp-gh-pages' );  // Creates a Github Pages
-
+var deploy       = require( 'gulp-gh-pages' );  // Creates a Github Pages
 
 
 // -------------------------------------
 
 
-gulp.task('deploy', function() {
-  return gulp.src('./dev/**/*')
-    .pipe(ghPages());
+// Deploy Dev Environment for testing
+gulp.task('deploy', function () {
+	return gulp.src( [
+		'./' + pathy.dev      + '/**/*',
+		'!'  + pathy.pug.dir  + '/**/*',
+		'!'  + pathy.sass.dir + '/**/*',
+		'!'  + pathy.js.dir   + '/**/*',
+		'./README.md'
+	])
+		.pipe(deploy())
 });
 
 
-
-// gulp.task('deploy', function () {
-//   return gulp.src( [
-//     './dist/**/*',
-//     // '!**/*.sass',
-//     // '!**/*.pug',
-//     '!**/*.+(sass|pug|css)',
-//     // './dist/index.html',
-//     // './dist/sass/**/*',
-//     './README.md'
-//   ])
-//     .pipe(deploy())
-// });
+// TODO: **Fresh** - Create a deploy task for build.
 
 
-
-// https://medium.com/superhighfives/deploying-to-github-pages-with-gulp-c06efc527de8#.p17ze1a3s
-
+// Checkout your working branch that you want to build from. Then copy/paste the below command into terminal to:
+// - Create a gh-pages branch
+// - Create a temporary readme file
+// - Create a .gitignore file and add `node_modules` to the ignore list
+// - Commit the files/changes and push to the gh-pages branch
+// - Checkout the Master branch
 //
-// git checkout --orphan gh-pages
-// git rm -rf .
-// touch README.md
-// git add README.md
-// git commit -m "Init gh-pages"
-// git push --set-upstream origin gh-pages
-// git checkout master
-
-// echo "node_modules" > .gitignore
+// Command:
+// git checkout --orphan gh-pages && git rm -rf . && touch README.md && git add README.md && touch .gitignore && echo "node_modules" > .gitignore && git add .gitignore && git commit -m "Init gh-pages" && git push --set-upstream origin gh-pages &&  git checkout master
