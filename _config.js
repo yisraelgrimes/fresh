@@ -21,9 +21,9 @@
 // ├── js
 // │   ├── main.js
 // │   └── vendor
-// ├── pug (*optional)
+// ├── views (*optional)
 // │   └── index.pug
-// └── sass
+// └── styles
 //     └── main.sass
 var basicStructure = true;
 
@@ -77,7 +77,7 @@ var lintJsVendors = false;
 // You can enter file name ('name.js') or, more explicit, complete path.
 var lintJsIgnored = '!assets/js/**/*.js';
 
-// Files outside of 'dev/js' that you want to lint (Defaul == none)
+// Files outside of 'dev/scripts' that you want to lint (Defaul == none)
 var lintJsExtraFiles = '';
 
 
@@ -170,9 +170,9 @@ global.pathy = {
 	server:  path.dev,                 // BrowserSync
 
 	sass: {
-		dir:   path.dev + '/sass',
-		all:   path.dev + '/sass/**/*.+(sass|scss)',
-		main:  path.dev + '/sass/main.' + sassFileType,
+		dir:   path.dev + '/styles',
+		all:   path.dev + '/styles/**/*.+(sass|scss)',
+		main:  path.dev + '/styles/main.' + sassFileType,
 		dest:  path.dev + '/assets/css',
 	},
 
@@ -187,21 +187,21 @@ global.pathy = {
 	},
 
 	pug: {
-		dir:   path.dev + '/pug',
-		all:   path.dev + '/pug/**/*.pug',
-		main:  path.dev + '/pug/index.pug',
-		pages: path.dev + '/pug/pages/**/*.pug',
+		dir:   path.dev + '/views',
+		all:   path.dev + '/views/**/*.pug',
+		main:  path.dev + '/views/index.pug',
+		pages: path.dev + '/views/pages/**/*.pug',
 		dest:  path.dev + '/html'
 	},
 
 	js: {
-		dir:    path.dev + '/js',
-		all:    path.dev + '/js/**/*.js',
-		main:   path.dev + '/js/' + jsMainImport,
+		dir:    path.dev + '/scripts',
+		all:    path.dev + '/scripts/**/*.js',
+		main:   path.dev + '/scripts/' + jsMainImport,
 		dest:   path.dev + '/assets/js',
 		vendor: {
-			dir:  path.dev + '/js/vendor',
-			all:  path.dev + '/js/vendor/**/*.js'
+			dir:  path.dev + '/scripts/vendor',
+			all:  path.dev + '/scripts/vendor/**/*.js'
 		}
 	},
 
@@ -316,7 +316,7 @@ global.optys = {
 		lintFiles: lintJs,
 		lint: {
 			files: [
-				pathy.js.all,     // All files in the dev/js folder
+				pathy.js.all,     // All files in the dev/scripts folder
 				jsVendorsArg,     // Arg to lint vendor files
 				'!**/*' + lintJsIgnored,     // User blacklisted files
 				lintJsExtraFiles  // User whitelisted files
