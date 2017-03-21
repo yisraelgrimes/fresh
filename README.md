@@ -147,8 +147,11 @@ cd your-fresh-project && npm install
 - v1.0.6
   - Added github pages task for dev environment `gulp deploy`.
 - v1.0.7 (Work in Progress)
+  - Changed `sass` parent-directory in the `dev` directory to `styles`.
+  - Changed `pug` parent-directory in the `dev` directory to `views`.
+  - Changed `js` parent-directory in the `dev` directory to `scripts`.
+- v1.0.8
   - Will be adding download commands for common dev files like `.gitignore`.
-  - Adding github pages automation for build tasks
 
 	
 ## Meta
