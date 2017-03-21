@@ -146,11 +146,12 @@ cd your-fresh-project && npm install
   - Cleaned up `gulp sass` stream to perform better.
 - v1.0.6
   - Added github pages task for dev environment `gulp deploy`.
-- v1.0.7 (Work in Progress)
+- v1.1.7 (Work in Progress)
   - Changed `sass` parent-directory in the `dev` directory to `styles`.
   - Changed `pug` parent-directory in the `dev` directory to `views`.
   - Changed `js` parent-directory in the `dev` directory to `scripts`.
-- v1.0.8
+  - Decided to bump the version name up to 1.1.7 instead of 1.0.7 due to file structure changes.
+- v1.1.8
   - Will be adding download commands for common dev files like `.gitignore`.
 
 	

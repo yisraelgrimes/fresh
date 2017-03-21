@@ -1,4 +1,4 @@
-// Fresh v1.0.5
+// Fresh v1.1.7
 //
 // Sets up Global Variables to use in gulp tasks.
 // -------------------------------------------------------------------
