@@ -1,4 +1,4 @@
-// Fresh v1.0.2
+// Fresh v1.1.7
 //
 // -------------------------------------------------------------------
 
@@ -42,9 +42,9 @@ if ( optys.config.basicStructure ) {
 		'echo \'// This is your main js file. Import modules from here and link to this file in your html.\' >' + pathy.js.main,
 		'mkdir ' + pathy.js.vendor.dir,
 		'mkdir ' + pathy.sass.dir,
-		'echo Downloading normalize.css from the Fresh-Resources repo...',
-		'curl -o normalize-3.0.3.css https://raw.githubusercontent.com/yisraelgrimes/fresh-resources/master/dev-templates/normalize-3.0.3.css',
-		'mv normalize-3.0.3.css ' + pathy.sass.dest,
+		'echo Downloading V5.0.0 of normalize.scss from the Fresh-Resources repo...',
+		'curl -o normalize-5.0.0.scss https://raw.githubusercontent.com/yisraelgrimes/fresh-resources/master/dev-templates/normalize-5.0.0.scss',
+		'mv normalize-5.0.0.scss ' + pathy.sass.dir + 'normalize.scss',
 	].join("\n");
 } else {
 	var basicDevStructure = [
