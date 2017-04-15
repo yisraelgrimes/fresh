@@ -23,4 +23,5 @@ gulp.task('build', function(done) {
 	)
 });
 
-// TODO: **Fresh** - Check build tasks and test
+
+// 2DO-FRESH: Test Build tasks
