@@ -88,28 +88,28 @@ cd your-fresh-project && npm install
    ```
 
 5. When you are ready to deploy your dev project to Github pages, copy/paste the code below into Terminal (if you don't already have) have a `gh-pages` branch. The script will:
-	- Create a gh-pages branch.
-	- Create/add a temporary README.md file.
-	- Create/add a .gitignore file and add `node_modules` to the ignore list.
-	- Commit the files/changes and push to the gh-pages branch.
-	- Checkout the Master branch.
-	
-	```sh
-	git checkout --orphan gh-pages && git rm -rf . && touch README.md && git add README.md && touch .gitignore && echo "node_modules" > .gitignore && git add .gitignore && git commit -m "Init gh-pages" && git push --set-upstream origin gh-pages &&  git checkout master
-	```
+ - Create a gh-pages branch.
+ - Create/add a temporary README.md file.
+ - Create/add a .gitignore file and add `node_modules` to the ignore list.
+ - Commit the files/changes and push to the gh-pages branch.
+ - Checkout the Master branch.
 
-	From there, you'll want to checkout the branch that you are wanting to deploy from and run:
-	
-	```sh
-	gulp deploy
-	```
-	
-	By default, the 'deploy' task will take all the files in your `./dev` directory and your `./README.md` file and push it to the root of your 'gh-pages' branch. The below directories in `./dev` are excluded by default because the compiled code would be in the `./dev/assets` folder:
-	- pug
-	- sass
-	- js
-	
-	You can change what's included/excluded from the `gh-pages.js` file [here.](https://github.com/yisraelgrimes/fresh/blob/master/gulp/gh-pages.js#L13)
+ ```sh
+ git checkout --orphan gh-pages && git rm -rf . && touch README.md && git add README.md && touch .gitignore && echo "node_modules" > .gitignore && git add .gitignore && git commit -m "Init gh-pages" && git push --set-upstream origin gh-pages &&  git checkout master
+ ```
+
+ From there, you'll want to checkout the branch that you are wanting to deploy from and run:
+
+ ```sh
+ gulp deploy
+ ```
+
+ By default, the 'deploy' task will take all the files in your `./dev` directory and your `./README.md` file and push it to the root of your 'gh-pages' branch. The below directories in `./dev` are excluded by default because the compiled code would be in the `./dev/assets` folder:
+ - pug
+ - sass
+ - js
+
+ You can change what's included/excluded from the `gh-pages.js` file [here.](https://github.com/yisraelgrimes/fresh/blob/master/gulp/gh-pages.js#L13)
 
 
 ---
@@ -125,25 +125,25 @@ cd your-fresh-project && npm install
 - v1.0.2
   - Moved the user config file `_config.js` to the project root and added an importer file `_config-import.js` to the `./gulp` tasks directory.
   - Added conditional to `gulp init` that produces an index.html file even when Pug is not being used in the project.
-	- Changed the default option to include Pug in the project to `false`.
-	- Turned off Sass-Linting as the default.
+  - Changed the default option to include Pug in the project to `false`.
+  - Turned off Sass-Linting as the default.
   - Made the sass import file user configurable.
   - Converted initial dev files/directories into variables to be controlled through 'config.js'
 - v1.0.3
   - Bugfix: BrowserSync watching/reloading HTML when using Pug.
-	- Basic Dev-Templates auto added with `gulp init` task.
-	  - index.pug/html file with minimal presets.
-		- main.scss/sass
-		- normalize.css (v3.0.3)
+  - Basic Dev-Templates auto added with `gulp init` task.
+    - index.pug/html file with minimal presets.
+    - main.scss/sass
+    - normalize.css (v3.0.3)
 - v1.0.4
   - Bugfix: Gulp todo returned path errors. - Fixed.
   - Added `_config.js` to the `gulp todo` blacklist.
   - Added an admin task `gulp refresh` to remove all files setup when running `gulp init`. (This is mainly to make testing for me easier.)
   - Changed the `add readme` option in `config` to be turned on by default.
 - v1.0.5
-	- Added ability to import markdown files directly into pug and compile to html. Added .md files to `gulp watch` that compiles pug on save.
-  - Added option to turn linting on/off for Javascript files.
-  - Cleaned up `gulp sass` stream to perform better.
+ - Added ability to import markdown files directly into pug and compile to html. Added .md files to `gulp watch` that compiles pug on save.
+ - Added option to turn linting on/off for Javascript files.
+ - Cleaned up `gulp sass` stream to perform better.
 - v1.0.6
   - Added github pages task for dev environment `gulp deploy`.
 - v1.1.7 (Work in Progress)
@@ -152,9 +152,9 @@ cd your-fresh-project && npm install
   - Changed `js` parent-directory in the `dev` directory to `scripts`.
   - Decided to bump the version name up to 1.1.7 instead of 1.0.7 due to file structure changes.
 - v1.1.8
-  - Will be adding download commands for common dev files like `.gitignore`.
+  - Will be adding gulp download commands for common dev files like `.gitignore`.
 
-	
+
 ## Meta
 
 Yisrael Grimes - @GrimesClassic - yisrael@tubemedia.co
