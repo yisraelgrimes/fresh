@@ -23,7 +23,7 @@ gulp.task('deploy', function () {
 });
 
 
-// TODO: **Fresh** - Create a deploy task for build.
+// 2DO-FRESH: Create a separate deploy task for build.
 
 
 // Checkout your working branch that you want to build from. Then copy/paste the below command into terminal to:
