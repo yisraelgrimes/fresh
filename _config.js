@@ -103,6 +103,10 @@ var todoSource = [
 
 // Additional Tags to search for
 var todoTags = [
+	// '2DO-FRESH', // General notes about Fresh
+	// '2DO-LUS',   // General notes about Luscious
+	// '2DO-YG',    // Notes for Yisrael
+	// '2DO-CH',    // Notes for Christian
 	'HOTFIX',
 	'REVIEW'
 ];

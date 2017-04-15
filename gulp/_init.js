@@ -44,7 +44,7 @@ if ( optys.config.basicStructure ) {
 		'mkdir ' + pathy.sass.dir,
 		'echo Downloading V5.0.0 of normalize.scss from the Fresh-Resources repo...',
 		'curl -o normalize-5.0.0.scss https://raw.githubusercontent.com/yisraelgrimes/fresh-resources/master/dev-templates/normalize-5.0.0.scss',
-		'mv normalize-5.0.0.scss ' + pathy.sass.dir + 'normalize.scss',
+		'mv normalize-5.0.0.scss ' + pathy.sass.dir + '/normalize.scss',
 	].join("\n");
 } else {
 	var basicDevStructure = [
