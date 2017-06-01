@@ -15,8 +15,8 @@ var pt = require( './_config.paths' );
 // -------------------------------------
 // Project Type: Static or Dynamic (CMS)
 // -------------------------------------
-// var buildType = 'static';     // HTMl
-var buildType = 'dynamic'; // CMS Site
+var buildType = 'static';     // HTMl
+// var buildType = 'dynamic'; // CMS Site
 
 
 // -------------------------------------
@@ -33,7 +33,7 @@ var lintPug = true;
 // Styles: (sass/scss/css)
 // -------------------------------------
 // Start with .sass or .scss
-var sassType = 'sass';
+var sassType = 'scss';
 // var sassType = 'scss';
 
 // Lint Sass (Config file in: './gulp/__rsc__/.sass-lint.yml')
