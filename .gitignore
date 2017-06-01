@@ -87,3 +87,5 @@ cache
 # \#*
 src/_rsc/prvt/*
 node_modules/
+
+*.sublime-workspace

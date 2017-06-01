@@ -1,19 +1,41 @@
-// Fresh v1.0.5
-//
+// Fresh v2.0.1
+// -------------------------------------
+
+// Plugins
+var g           = require('gulp'         );
+var runSequence = require('run-sequence' );
+var browserSync = require( 'browser-sync'),
+		reload      = browserSync.reload;
+
+// Configs
+var pt = require('./_config.paths'  );
+var op = require('./_config.options');
+
 // -------------------------------------------------------------------
 
-// Require Plugins
-var gulp         = require( 'gulp'          );  // Umm. The reason we're here?
-var runSequence  = require( 'run-sequence'  );  // Sets order for tasks to run
 
+// Serve files to browser
+g.task('server', function() {
+	browserSync({
+		server: {
+			baseDir: pt.server
+		}
+	})
+});
 
-// Default Gulp Task
+// Set up watchers to run tasks and reload browser
+g.task('watch', function() {
+	g.watch(pt.devD + pt.allFiles, ['views'] );
+	g.watch(pt.devD + pt.stylesFiles, ['styles'] );
+	g.watch(pt.devD + pt.scriptsFiles, ['scripts'] );
+	g.watch(pt.server + pt.htmlFiles, reload );
+});
+
 // -------------------------------------
-// - Sass:    Compiles, tabifies, and lints.  Outputs CSS.
-// - Pug:     (*optional) Compiles, tabifies. Outputs HTML.
-// - JS:      Tabifies and lints.
-// - Server:  Creates local server and sync-refreshes browsers.
-// - Watches: Sass, Pug (*optional), JS, html. Runs tasks and reloads browser.
-gulp.task( 'default', function( done ) {
-	runSequence([ 'sass', 'views', 'server' ], 'watch', done )
+
+// Default Task
+g.task('default', function(callback) {
+	runSequence('images', 'views', 'styles:tabify',
+	['fonts', 'styles', 'styles:normalize', 'scripts', 'server'],
+	'watch', callback )
 });

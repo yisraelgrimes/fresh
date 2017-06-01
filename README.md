@@ -73,7 +73,7 @@ cd your-fresh-project && npm install
 
 1. Update your info in the `package.json` file.
 
-2. Go to `./_config.js` and configure your project in the top section (or use the default settings.)
+2. Go to `./gulp/_config.options.js` and configure your project in the top section (or use the default settings.) If you want to change any default directory names or file paths, do this in `./gulp/_config.paths.js`.
 
 3. Initiate your project:
 
@@ -87,41 +87,55 @@ cd your-fresh-project && npm install
    gulp
    ```
 
-5. When you are ready to deploy your dev project to Github pages, copy/paste the code below into Terminal (if you don't already have) have a `gh-pages` branch. The script will:
- - Create a gh-pages branch.
- - Create/add a temporary README.md file.
- - Create/add a .gitignore file and add `node_modules` to the ignore list.
- - Commit the files/changes and push to the gh-pages branch.
- - Checkout the Master branch.
+5. When you are satisfied with your developement and are ready to send the project to production, run:
 
- ```sh
- git checkout --orphan gh-pages && git rm -rf . && touch README.md && git add README.md && touch .gitignore && echo "node_modules" > .gitignore && git add .gitignore && git commit -m "Init gh-pages" && git push --set-upstream origin gh-pages &&  git checkout master
- ```
+  ```sh
+  gulp build
+  ```
+  
+Something to note with the build command, the output styling will be determined by the buildType variable set in `./gulp/_config.options.js`. 'Static' will produce a completely minified version of the site while 'Dynamic' will minify everything but .html files and will ignore any files/directories that have '@@' in the name. This is done so you can have a static demo of the site, and then run `gulp cms` to produce a version ready to be used in cms templating with dynamic content. 
 
- From there, you'll want to checkout the branch that you are wanting to deploy from and run:
+6. When you are ready to deploy your dev project to Github pages, first run `gulp deploy:setup` to create a gh-pages branch and configure it. After that, all you need to do is run `gulp deploy` from the branch that you want to deploy. Keep in mind that you will need write privileges on the repo to deploy pages. The set up task has only been tested on Mac OS and uses several bash scripts wrapped in 'gulp-shell' so you may want to check them out before running it. The file is `./gulp/shell/ghpages.sh`. The scripts will:
+	- Create a gh-pages branch.
+	- Create/add a temporary README.md file.
+	- Create/add a .gitignore file and add `node_modules` to the ignore list.
+	- Commit the files/changes and push to the gh-pages branch.
+	- Checkout the Master branch.
 
- ```sh
- gulp deploy
- ```
-
- By default, the 'deploy' task will take all the files in your `./dev` directory and your `./README.md` file and push it to the root of your 'gh-pages' branch. The below directories in `./dev` are excluded by default because the compiled code would be in the `./dev/assets` folder:
- - pug
- - sass
- - js
-
- You can change what's included/excluded from the `gh-pages.js` file [here.](https://github.com/yisraelgrimes/fresh/blob/master/gulp/gh-pages.js#L13)
-
+Running `gulp deploy` will, by default, copy everything from `./build` to be published.
+	
 
 ---
 
 ## Changelog
 
-- v1.0.0
-  - Initial Release
 
-- v1.0.1
-  - (HotFix) Added `gulp-cssnano` to dependencies.
-
+- v2.0.1
+  - Pretty much everything has been rebuilt. Will add documentation as time permits.
+- v1.1.8
+  - Skipped to v2.0.1
+- v1.1.7
+  - Changed `sass` parent-directory in the `dev` directory to `styles`.
+  - Changed `pug` parent-directory in the `dev` directory to `views`.
+  - Changed `js` parent-directory in the `dev` directory to `scripts`.
+  - Decided to bump the version name up to 1.1.7 instead of 1.0.7 due to file structure changes.
+- v1.0.6
+  - Added github pages task for dev environment `gulp deploy`.
+- v1.0.5
+  - Added ability to import markdown files directly into pug and compile to html. Added .md files to `gulp watch` that compiles pug on save.
+  - Added option to turn linting on/off for Javascript files.
+  - Cleaned up `gulp sass` stream to perform better.
+- v1.0.4
+  - Bugfix: Gulp todo returned path errors. - Fixed.
+  - Added `_config.js` to the `gulp todo` blacklist.
+  - Added an admin task `gulp refresh` to remove all files setup when running `gulp init`. (This is mainly to make testing for me easier.)
+  - Changed the `add readme` option in `config` to be turned on by default.
+- v1.0.3
+  - Bugfix: BrowserSync watching/reloading HTML when using Pug.
+  - Basic Dev-Templates auto added with `gulp init` task.
+  - index.pug/html file with minimal presets.
+  - main.scss/sass
+  - normalize.css (v3.0.3)
 - v1.0.2
   - Moved the user config file `_config.js` to the project root and added an importer file `_config-import.js` to the `./gulp` tasks directory.
   - Added conditional to `gulp init` that produces an index.html file even when Pug is not being used in the project.
@@ -129,32 +143,13 @@ cd your-fresh-project && npm install
   - Turned off Sass-Linting as the default.
   - Made the sass import file user configurable.
   - Converted initial dev files/directories into variables to be controlled through 'config.js'
-- v1.0.3
-  - Bugfix: BrowserSync watching/reloading HTML when using Pug.
-  - Basic Dev-Templates auto added with `gulp init` task.
-    - index.pug/html file with minimal presets.
-    - main.scss/sass
-    - normalize.css (v3.0.3)
-- v1.0.4
-  - Bugfix: Gulp todo returned path errors. - Fixed.
-  - Added `_config.js` to the `gulp todo` blacklist.
-  - Added an admin task `gulp refresh` to remove all files setup when running `gulp init`. (This is mainly to make testing for me easier.)
-  - Changed the `add readme` option in `config` to be turned on by default.
-- v1.0.5
- - Added ability to import markdown files directly into pug and compile to html. Added .md files to `gulp watch` that compiles pug on save.
- - Added option to turn linting on/off for Javascript files.
- - Cleaned up `gulp sass` stream to perform better.
-- v1.0.6
-  - Added github pages task for dev environment `gulp deploy`.
-- v1.1.7 (Work in Progress)
-  - Changed `sass` parent-directory in the `dev` directory to `styles`.
-  - Changed `pug` parent-directory in the `dev` directory to `views`.
-  - Changed `js` parent-directory in the `dev` directory to `scripts`.
-  - Decided to bump the version name up to 1.1.7 instead of 1.0.7 due to file structure changes.
-- v1.1.8
-  - Will be adding gulp download commands for common dev files like `.gitignore`.
+- v1.0.1
+  - (HotFix) Added `gulp-cssnano` to dependencies.
+- v1.0.0
+  - Initial Release
 
 
+	
 ## Meta
 
 Yisrael Grimes - @GrimesClassic - yisrael@tubemedia.co
