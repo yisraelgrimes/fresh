@@ -1,30 +1,42 @@
-// Fresh v1.0.0
-//
-// -------------------------------------------------------------------
-
-// Require Plugins
-var gulp   = require( 'gulp'        );  // Umm. The reason we're here?
-var todo   = require( 'gulp-todo'   );  // Parses/makes a todo file
-var shell  = require( 'gulp-shell'  );  // Terminal Commands in Gulp
-
+// Fresh v2.0.1
 // -------------------------------------
 
+// Plugins
+var g           = require( 'gulp'             );
+var todo        = require( 'gulp-todo'        );
+var del         = require( 'del'              );
 
-// Creates a todo list based on user configs in '_config.js'
-gulp.task( 'todo', ['echo:todo'], function() {
-	gulp.src( optys.todo.source )
-		.pipe( todo( optys.todo.output ) )
-		.pipe( gulp.dest( optys.todo.dest ) )
-} );
+// Configs
+var pt = require('./_config.paths'  );
+var op = require('./_config.options');
 
+// -------------------------------------------------------------------
 
-// Prints info to CLI when running 'gulp todo'
-gulp.task( 'echo:todo', shell.task( [
-	'echo You can control the name and location of your TODO list from ./gulp/_config.js.'
-] ) );
+// Task Options
+var options = {
+	customTags: op.todoTags,
+	// Modifies output header
+	transformHeader: function (kind) {
+		return [
+			'### ' + kind,
+			'| Filename | line # | ' + kind,
+			'|:------|:------:|:------'
+		]
+	}
+};
+
+// -------------------------------------
+// Main Task
+// -------------------------------------
+
+g.task('todo', function() {
+	return g.src(op.todoFiles)
+		.pipe(todo(options))
+		.pipe(g.dest(op.todoOutput));
+});
 
 
 // Removes created 'todo' list
-gulp.task( 'clean:todo', shell.task( [
-	'rm -rf ' + optys.todo.dest + optys.todo.output.filename
-] ) );
+g.task('clean:todo', function () {
+	return del.sync('./TODO.md');
+});

@@ -1,40 +1,36 @@
-// Fresh v1.0.4
-//
-// Some tasks that make working on the Fresh - Core a little easier.
-// -------------------------------------------------------------------
-
-// Require Plugins
-var gulp         = require( 'gulp'          );  // Umm. The reason we're here?
-var shell        = require( 'gulp-shell'    );  // Terminal Commands in Gulp
-
-
+// Fresh v2.0.1
 // -------------------------------------
 
+// Plugins
+var g     = require('gulp'        );
+var shell = require( 'gulp-shell' );
 
-// Resets project files structure back to original.
-// Used before pushing to the master brance after creating test projects
-gulp.task('refresh', () => {
-	// Use node.js to check for Fresh Readme file
-	var fs = require( 'fs' ),
-	    file = 'fresh_README.md';
+// Configs
+var pt = require('./_config.paths'  );
+var op = require('./_config.options');
 
-  if ( fs.existsSync( file ) ) {
-    var resetReadme = 'mv fresh_README.md README.md';
-  } else {
-    var resetReadme = console.log( 'fresh_README.md file does not exist' );
-  }
+// -------------------------------------------------------------------
 
-  return gulp.src( pathy.root )
-  .pipe( shell( [
-		// Dev Files
-		'rm -rf ' + pathy.dev,
-		'rm -rf .editorconfig',
-		'rm -rf .stylishcolors',
-		'rm -rf TODO.md',
-		resetReadme,
-		// Build Files
-		'rm -rf ' + pathy.build,
-		'rm -rf robots.txt',
-		'rm -rf humans.txt',
-	] ) )
-} );
+
+// Resets the project back to the original 'Fresh' state
+g.task('refresh', shell.task([ '. ./gulp/shell/refresh.sh' ]));
+
+
+// Plays audio clip from Cleveland Brown (because, fun)
+g.task('fun', shell.task([ 'afplay gulp/__rsc__/boom.m4a' ]));
+
+
+// Symple test to make sure gulp is processing properly
+g.task('hello', function() { console.log('Hello World'); });
+
+// Make a git.io short url
+g.task('gitio', shell.task([ 
+	'. ./gulp/shell/gitshorturl.sh' 
+]));
+
+
+// Use Cloc to print dev info about project.
+// Must have Cloc installed on your machine. (brew install cloc)
+g.task('cloc', shell.task([ 
+	'cloc . --exclude-dir=node_modules' 
+]));

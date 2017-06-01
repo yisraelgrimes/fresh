@@ -1,30 +1,26 @@
-// Fresh v1.0.0
-//
-// -------------------------------------------------------------------
-
-// Require Plugins
-var gulp   = require( 'gulp'        );  // Umm. The reason we're here?
-var shell  = require( 'gulp-shell'  );  // Terminal Commands in Gulp
-
+// Fresh v2.0.1
 // -------------------------------------
 
+// Plugins
+var g   = require('gulp' );
+var del = require('del'  );
 
-// Deletes 'build' folder
-gulp.task( 'clean:build', shell.task( [
-	'rm -rf ' + pathy.build
-] ) );
+// Configs
+var pt = require('./_config.paths'  );
+var op = require('./_config.options');
 
-
-// Deletes all generated files
-gulp.task( 'clean:all', shell.task( [
-	'rm -rf ' + pathy.build,
-	'rm -rf ' + pathy.css.all
-] ) );
+// -------------------------------------------------------------------
 
 
-// Deletes html files (use with caution)
-gulp.task( 'clean:html', shell.task( [
-	'rm -rf ' + pathy.dev + '/html',
-	'rm -rf ' + pathy.dev + '/index.html'
-] ) );
-// TODO: Add gulp-prompt for safe delete or change command type for manual verification
+// Removes staging and production directories
+g.task('clean', function() {
+	return del.sync([ pt.stagingD, pt.buildD ]);
+});
+
+g.task('clean:build', function() {
+	return del.sync([pt.buildD]);
+});
+
+g.task('clean:staging', function() {
+	return del.sync([pt.stagingD]);
+});

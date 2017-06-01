@@ -38,7 +38,7 @@ rules:
       allow-map-identifiers: true # true
       allow-rgba: true # false
   no-combinators: 0
-  no-css-comments: 1 # sass and bang ( /*!   **/) comments are allowed
+  no-css-comments: 0 # bang comments ( /*!   **/) are allowed. If '0', all comments are allowed
   no-debug: 0
   no-disallowed-properties: 0
   no-duplicate-properties: 1
