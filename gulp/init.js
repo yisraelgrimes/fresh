@@ -1,4 +1,4 @@
-// Fresh v2.0.1
+// Fresh v2.0.2
 // -------------------------------------
 
 // Plugins
@@ -60,6 +60,7 @@ g.task('init:templates', function(callback) {
 		'dl:styles',
 		'dl:scripts',
 		'dl:views',
+		'dl:viewsData',
 		'dl:images'],
 		callback
 	)
@@ -159,6 +160,13 @@ g.task('dl:views', function() {
 			.pipe(g.dest(pt.devD + pt.viewsD));
 		};
 	};
+});
+
+g.task('dl:viewsData', function() {
+	if(op.pipeData) {
+		download(op.link.viewsData)
+		.pipe(g.dest(pt.devD + pt.viewsD));
+	}
 });
 
 // -------------------------------------
