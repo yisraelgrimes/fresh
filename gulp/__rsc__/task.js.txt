@@ -1,4 +1,4 @@
-// Fresh v2.0.1
+// Fresh v2.0.2
 // -------------------------------------
 
 // Plugins
@@ -35,6 +35,7 @@ var map         = require( 'gulp-map'         );
 var filetree    = require( 'gulp-filetree'    );
 var deploy      = require( 'gulp-gh-pages'    );
 var sloc        = require( 'gulp-sloc'        );
+var data      = require( 'gulp-data'          );
 var browserSync = require( 'browser-sync'     ),
 		reload      = browserSync.reload;
 

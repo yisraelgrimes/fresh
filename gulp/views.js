@@ -1,17 +1,18 @@
-// Fresh v2.0.1
+// Fresh v2.0.2
 // -------------------------------------
 // 2DO-FRESH: Add settings to .pug-lintrc
 
 // Plugins
-var g         = require('gulp'             	);
-var gulpif    = require('gulp-if'          	);
-var prettyPug = require('gulp-pug-beautify'	);
-var puglint   = require('gulp-pug-lint'    	);
-var html2pug  = require('gulp-html2pug'    	);
-var tabify    = require('gulp-tabify'      	);
-var rename    = require('gulp-rename'      	);
-var pug       = require( 'gulp-pug'         );
-var del       = require('del'              	);
+var g         = require( 'gulp'              );
+var gulpif    = require( 'gulp-if'           );
+var prettyPug = require( 'gulp-pug-beautify' );
+var puglint   = require( 'gulp-pug-lint'     );
+var html2pug  = require( 'gulp-html2pug'     );
+var tabify    = require( 'gulp-tabify'       );
+var rename    = require( 'gulp-rename'       );
+var pug       = require( 'gulp-pug'          );
+var del       = require( 'del'               );
+var data      = require( 'gulp-data'         );
 
 // Configs
 var pt = require('./_config.paths'  );
@@ -37,12 +38,21 @@ if (op.usePug && op.lintPug) {
 };
 
 
+// If using gulp-data to get data to views engine and using Pug
+var getData = false;
+if (op.usePug && op.pipeData) {
+	var getData = true;
+};
+
 // -------------------------------------
 // Main tasks
 // -------------------------------------
 
 g.task('views', function() {
 	return g.src( source )
+		.pipe(gulpif(getData, data(function() {
+			return require(op.dataPath)
+		})))
 		.pipe(gulpif(op.usePug, tabify(2, true)))
 		.pipe(gulpif(lintPug, puglint()))
 		.pipe(gulpif(op.usePug, g.dest(pt.devD + pt.viewsD)))

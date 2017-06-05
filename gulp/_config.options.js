@@ -1,4 +1,4 @@
-// Fresh v2.0.1
+// Fresh v2.0.2
 //
 // Description:
 // Configures options for environment and various plugins.
@@ -28,12 +28,18 @@ var usePug = true;
 // Lint Pug files
 var lintPug = true;
 
+// Send data to views from json file
+var pipeData = true;
+
+// Path to data file
+var dataPath = '.' + pt.devD + pt.viewsD + '/data.json';
+// dataPath Defaults to: ../dev/views/data.json
 
 // -------------------------------------
 // Styles: (sass/scss/css)
 // -------------------------------------
 // Start with .sass or .scss
-var sassType = 'scss';
+var sassType = 'sass';
 // var sassType = 'scss';
 
 // Lint Sass (Config file in: './gulp/__rsc__/.sass-lint.yml')
@@ -127,9 +133,9 @@ if (buildType == 'static') {
 	var isStatic = true;
 }
 
+
 // Used for downloading templates from Fresh Resources Repo
 var dlUrlBase20 = 'https://raw.githubusercontent.com/yisraelgrimes/fresh-resources/master/dev-templates/fresh-2.0/';
-
 
 
 // -------------------------------------------------------------------
@@ -144,6 +150,8 @@ module.exports = {
 	// Views
 	usePug: usePug,               // views-bool
 	lintPug: lintPug,             // views-bool
+	pipeData: pipeData,           // views-bool
+	dataPath: dataPath,           // views-string
 
 	// Styles
 	sassType: sassType,           // styles-string-[sass or scss]
@@ -191,6 +199,7 @@ module.exports = {
 		indexHtml:     dlUrlBase20 + 'templates/views/index.html',
 		indexPug:      dlUrlBase20 + 'templates/views/index.pug',
 		four04Pug:     dlUrlBase20 + 'templates/views/404.pug',
+		viewsData:     dlUrlBase20 + 'templates/views/data.json',
 		mainJs:        dlUrlBase20 + 'templates/scripts/main.js',
 		basePug:       dlUrlBase20 + 'templates/views/partials/_base.pug',
 		// name:   dlUrlBase20 + '',
