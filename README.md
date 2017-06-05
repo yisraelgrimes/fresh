@@ -109,7 +109,8 @@ Running `gulp deploy` will, by default, copy everything from `./build` to be pub
 
 ## Changelog
 
-
+- v2.0.2
+  - Gulp-data is now baked into the views task if you are using pug for your template engine. When running `gulp init` a data.json file is also added in the `./dev` folder to help you get started.
 - v2.0.1
   - Pretty much everything has been rebuilt. Will add documentation as time permits.
 - v1.1.8
