@@ -1,4 +1,4 @@
-// Fresh v2.0.1
+// Fresh v2.0.3
 //
 // Description:
 // Configures path variables for tasks and projects.
@@ -13,13 +13,13 @@ var op   = require( './_config.options' );
 module.exports = {
 	// Everything in a directory
 	allFiles: '/**/*',       // Glob all files in dir
-	ignoreD:  '/*@@*/**/*.*',  // Add two '@@' to a dir/file to ignore
+	ignoreD:  '/*@@*',  // Add two '@@' to a dir/file to ignore
 
 	// Root level directories
 	devD:     './dev',
 	stagingD: './staging',
 	buildD:   './build',
-	
+
 	server:   './staging',   // BrowserSync will load from here.
 
 	// Sublevel paths ------ //

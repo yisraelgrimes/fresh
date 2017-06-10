@@ -1,4 +1,4 @@
-// Fresh v2.0.1
+// Fresh v2.0.3
 // -------------------------------------
 
 // Plugins
@@ -14,11 +14,11 @@ var op = require('./_config.options' );
 
 
 // If Production env, ignore images in a dir that contains '@@' in the name
-var source = pt.devD + pt.imagesD + pt.imagesAll;
+var buildSource = pt.stagingD + pt.imagesD + pt.imagesAll;
 if (op.isDynamic) {
-	var source = [
+	var buildSource = [
 		pt.stagingD + pt.imagesD + pt.imagesAll,
-		// 2DO-FRESH: Figure out glob ignore for @@ and rootimg
+		'!' + pt.stagingD + pt.imagesD + pt.ignoreD + pt.imagesAll,
 	];
 };
 
@@ -27,7 +27,10 @@ if (op.isDynamic) {
 
 // Copy, optimize, and cache images
 g.task('images', ['rootimages'], function() {
-	return g.src(pt.devD + pt.imagesD + pt.imagesAll)
+	return g.src([
+		pt.devD + pt.imagesD + pt.imagesAll,
+		'!' + pt.devD + pt.imagesD + pt.imagesRootD + pt.imagesAll
+	])
 		.pipe(cache(imagemin({
 			interlaced: true,
 		})))
@@ -43,7 +46,7 @@ g.task('rootimages', function() {
 // -------------------------------------
 
 g.task('build:images', ['build:rootimages'], function() {
-	return g.src(source)
+	return g.src(buildSource)
 	.pipe(g.dest(pt.buildD + pt.imagesD));
 });
 

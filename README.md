@@ -2,8 +2,8 @@
 
 ---
 
-**Stable Version: 2.0.2**
-**WIP Version: 2.0.3**
+**Stable Version is 2.0.3 on Master branch**
+**WIP Version: 2.0.4 on WIP-204 branch** 
 
 # Fresh Starter Kit
 
@@ -114,6 +114,8 @@ Running `gulp deploy` will, by default, copy everything from `./build` to be pub
 
 - v2.0.3
   - Added 'fresh-resources' to gitignore so I can symlink to my local repo to make my life easier :)
+  - Added console.log message for `gulp build` to remind you if of the build type (either static or dynamic) and what to do next.
+  - Fixed the source path for the `images` task so that any image directory that includes '@@' in the name is ignored when running `gulp build` on a Dynamic project (used for outputting a CMS template).
 - v2.0.2
   - Gulp-data is now baked into the views task if you are using pug for your template engine. When running `gulp init` a data.json file is also added in the `./dev` folder to help you get started.
 - v2.0.1
