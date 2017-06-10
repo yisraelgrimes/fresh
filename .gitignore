@@ -1,8 +1,10 @@
-# Created by https://www.gitignore.io/api/osx,wordpress,sass,codekit
+# Fresh v2.0.3
 
 ### Gulp ###
 .publish
 
+### Fresh ###
+fresh-resources
 
 ### Sublime ###
 *.sublime-project

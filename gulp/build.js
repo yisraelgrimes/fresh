@@ -1,4 +1,4 @@
-// Fresh v2.0.1
+// Fresh v2.0.3
 // -------------------------------------
 
 // Plugins
@@ -40,6 +40,7 @@ g.task('build', function(callback) {
 		'build:images',
 		'concat',
 		'tree',
+		'build:message',
 		callback
 	)
 });
@@ -100,6 +101,19 @@ g.task('pack:changelog', function() {
 	};
 });
 
+
+// Default output message for Static builds
+var buildMessage = 'Your STATIC site is ready for production! Check the \'' + pt.buildD + '\' directory for your optimized files. All you have to do now is grab that directory and make it the root folder of your site. If you want to test it out, just run \'gulp build:test\' in your command line.'
+
+if (op.isDynamic){
+	var buildMessage = 'Your DYNAMIC template is ready to be converted for your CMS! Check the \'' + pt.buildD + '\' directory for your template-ready files. You demo content probably won\'t work but if you want to check the other stuff then just run \'gulp build:test\' in your command line.'
+}
+
+g.task('build:message', function() {
+	console.log('');
+	console.log(buildMessage);
+	console.log('');
+});
 
 // -------------------------------------
 // Helper Task to test build files
