@@ -2,6 +2,9 @@
 
 ---
 
+**Stable Version: 2.0.2**
+**WIP Version: 2.0.3**
+
 # Fresh Starter Kit
 
 A starter framework for building web projects using Sass, Gulp, Pug (optional), and some other modern tools. The goal for this starter kit is to be un-opinionated as possible while giving you easlily configured settings, keep things kinda modular, and be educational.
@@ -87,7 +90,7 @@ cd your-fresh-project && npm install
    gulp
    ```
 
-5. When you are satisfied with your developement and are ready to send the project to production, run:
+5. When you are satisfied with your development and are ready to send the project to production, run:
 
   ```sh
   gulp build
