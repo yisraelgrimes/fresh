@@ -111,11 +111,14 @@ var todoTags = [
 	'REVIEW',
 	'2DO-CH',
 	'2DO-YG',
-	'2DO-FRESH',
+	// '2DO-FRESH',
+	'POSTLAUNCH',
+	'2DO-LATER',
 ];
 
 // Files to search for tags
 var todoFiles = './gulp/**/*.+(html|css|js|sass|scss|pug)';
+// var todoFiles = './gulp/**/*.+(js|yml|sh)';
 
 // Output Location
 var todoOutput = './';

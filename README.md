@@ -114,6 +114,7 @@ Running `gulp deploy` will, by default, copy everything from `./build` to be pub
 
 - v2.0.4
 	- You can now pipe data into your `.pug` files from `./dev/views/data.json` and gulp will auto-reload/run the `views` task and refresh browser when the `.json` file is changed.
+	- Added 'POSTLAUNCH' and '2DO-LATER' tags as defaults to the 'gulp todo' task. These can be changed in `./gulp/_config.options.js`.
 - v2.0.3
 	- Added 'fresh-resources' to gitignore so I can symlink to my local repo to make my life easier :)
 	- Added console.log message for `gulp build` to remind you if of the build type (either static or dynamic) and what to do next.
