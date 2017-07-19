@@ -1,4 +1,4 @@
-// Fresh v2.0.1
+// Fresh v2.0.4
 // -------------------------------------
 
 // Plugins
@@ -25,7 +25,7 @@ g.task('server', function() {
 
 // Set up watchers to run tasks and reload browser
 g.task('watch', function() {
-	g.watch(pt.devD + pt.allFiles, ['views'] );
+	g.watch(pt.devD + pt.viewsD + pt.allFiles, ['views'] );
 	g.watch(pt.devD + pt.stylesFiles, ['styles'] );
 	g.watch(pt.devD + pt.scriptsFiles, ['scripts'] );
 	g.watch(pt.server + pt.htmlFiles, reload );

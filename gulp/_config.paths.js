@@ -1,4 +1,4 @@
-// Fresh v2.0.3
+// Fresh v2.0.4
 //
 // Description:
 // Configures path variables for tasks and projects.
@@ -24,11 +24,12 @@ module.exports = {
 
 	// Sublevel paths ------ //
 
-	// Views: pug/html
+	// Views: pug/html/data
 	viewsD:       '/views',
 	pugFiles:     '/**/*.pug',
 	pugPartials:  '**/_*.pug',
 	htmlFiles:    '/**/*.html',
+	dataFiles:    '/**/*.json',
 
 	// Scripts: js
 	scriptsD:     '/scripts',
