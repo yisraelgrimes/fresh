@@ -2,8 +2,8 @@
 
 ---
 
-**Stable Version is 2.0.3 on Master branch**  
-**WIP Version: 2.0.4 on WIP-204 branch** 
+**Stable Version is 2.0.4 on Master branch**  
+**WIP Version: 2.0.5 on WIP-205 branch** 
 
 # Fresh Starter Kit
 
