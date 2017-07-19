@@ -1,4 +1,4 @@
-// Fresh v2.0.2
+// Fresh v2.0.4
 //
 // Description:
 // Configures options for environment and various plugins.
@@ -32,8 +32,8 @@ var lintPug = true;
 var pipeData = true;
 
 // Path to data file
-var dataPath = '.' + pt.devD + pt.viewsD + '/data.json';
-// dataPath Defaults to: ../dev/views/data.json
+var dataPath = pt.devD + pt.viewsD + '/data.json';
+// dataPath Defaults to: ./dev/views/data.json
 
 // -------------------------------------
 // Styles: (sass/scss/css)
@@ -111,11 +111,14 @@ var todoTags = [
 	'REVIEW',
 	'2DO-CH',
 	'2DO-YG',
-	'2DO-FRESH',
+	// '2DO-FRESH',
+	'POSTLAUNCH',
+	'2DO-LATER',
 ];
 
 // Files to search for tags
 var todoFiles = './gulp/**/*.+(html|css|js|sass|scss|pug)';
+// var todoFiles = './gulp/**/*.+(js|yml|sh)';
 
 // Output Location
 var todoOutput = './';

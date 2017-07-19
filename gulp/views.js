@@ -1,4 +1,4 @@
-// Fresh v2.0.2
+// Fresh v2.0.4
 // -------------------------------------
 // 2DO-FRESH: Add settings to .pug-lintrc
 
@@ -13,6 +13,7 @@ var rename    = require( 'gulp-rename'       );
 var pug       = require( 'gulp-pug'          );
 var del       = require( 'del'               );
 var data      = require( 'gulp-data'         );
+var fs        = require( 'fs'                );
 
 // Configs
 var pt = require('./_config.paths'  );
@@ -50,8 +51,8 @@ if (op.usePug && op.pipeData) {
 
 g.task('views', function() {
 	return g.src( source )
-		.pipe(gulpif(getData, data(function() {
-			return require(op.dataPath)
+		.pipe(gulpif(getData, data(function(file) {
+			return JSON.parse(fs.readFileSync(op.dataPath));
 		})))
 		.pipe(gulpif(op.usePug, tabify(2, true)))
 		.pipe(gulpif(lintPug, puglint()))
