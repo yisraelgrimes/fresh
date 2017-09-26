@@ -48,10 +48,14 @@ var lintOpts = {
 // Main Tasks
 // -------------------------------------
 // 2DO-FRESH: find out if there's a way to get sass to not care if tabs/spaces are used together. And find out if it's possible to convert tabs to spaces on-save without re-running all sass files.
-
+// TODO: Add a universal `ignore` tag to the global pt variable to be used in other tasks.
 g.task('styles', function() {
-	return g.src(pt.devD + pt.stylesD + pt.stylesFiles)
-		.pipe(tabify( 2, true ))
+	return g.src([
+		pt.devD + pt.stylesD + pt.stylesFiles,
+		'!**/@*.+(sass|scss)'
+		])
+		// 2DO-FRESH: Add tabify as option in config for users who aren't tabifying with their editor
+		// .pipe(tabify( 2, true ))
 		.pipe(gulpif(op.lintSass, sassLint( lintOpts )))
 		.pipe(gulpif(op.lintSass, sassLint.format()))
 		.pipe(sourcemaps.init())

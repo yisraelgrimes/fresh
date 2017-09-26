@@ -35,7 +35,8 @@ g.task('watch', function() {
 
 // Default Task
 g.task('default', function(callback) {
-	runSequence('images', 'views', 'styles:tabify',
+	// 2DO-FRESH: Add tabify as a config option
+	runSequence('images', 'views', /* 'styles:tabify', */
 	['fonts', 'styles', 'styles:normalize', 'scripts', 'server'],
 	'watch', callback )
 });
