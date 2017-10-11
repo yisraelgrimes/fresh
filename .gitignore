@@ -1,24 +1,24 @@
-# Fresh v2.0.3
+####################
+### Fresh v3.0.0 ###
+####################
 
-### Gulp ###
+
+# Gulp symlink
+# gulp
+
+
 .publish
 
-### Fresh ###
-fresh-resources
 
-### Sublime ###
-*.sublime-project
-*.sublime-workspace
+# Created by https://www.gitignore.io/api/node,sass,macos,windows,sublimetext
 
-
-### OSX ###
+### macOS ###
 *.DS_Store
 .AppleDouble
 .LSOverride
 
 # Icon must end with two \r
 Icon
-Icon?
 
 # Thumbnails
 ._*
@@ -39,55 +39,92 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-
-### WordPress ###
+### Node ###
+# Logs
+logs
 *.log
-wp-config.php
-wp-content/advanced-cache.php
-wp-content/backup-db/
-wp-content/backups/
-wp-content/blogs.dir/
-wp-content/cache/
-wp-content/upgrade/
-wp-content/uploads/
-wp-content/wp-cache-config.php
-wp-content/plugins/hello.php
+npm-debug.log*
 
-/.htaccess
-/license.txt
-/readme.html
-/sitemap.xml
-/sitemap.xml.gz
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
 
+# Dependency directories
+node_modules/
 
-### Luscious ###
-.todo-luscious.md
-_todo.md
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# dotenv environment variables file
+.env
 
 
 ### Sass ###
 .sass-cache/
 *.css.map
 
+### SublimeText ###
+# cache files for sublime text
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
 
-### Sassdoc ###
-luscious/docs/
-
-
-
-### CodeKit ###
-# General CodeKit files to ignore
-/min
-
-### Grav CMS ###
-logs/popularity
-cache
-
-
-
-### Private ###
-# \#*
-src/_rsc/prvt/*
-node_modules/
-
+# workspace files are user-specific
 *.sublime-workspace
+
+# project files should be checked into the repository, unless a significant
+# proportion of contributors will probably not be using SublimeText
+# *.sublime-project
+
+# sftp configuration file
+sftp-config.json
+
+# Package control specific files
+Package Control.last-run
+Package Control.ca-list
+Package Control.ca-bundle
+Package Control.system-ca-bundle
+Package Control.cache/
+Package Control.ca-certs/
+Package Control.merged-ca-bundle
+Package Control.user-ca-bundle
+oscrypto-ca-bundle.crt
+bh_unicode_properties.cache
+
+# Sublime-github package stores a github token in this file
+# https://packagecontrol.io/packages/sublime-github
+GitHub.sublime-settings
+
+### Windows ###
+# Windows thumbnail cache files
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# End of https://www.gitignore.io/api/node,sass,macos,windows,sublimetext

@@ -2,39 +2,45 @@
 
 ---
 
-**Stable Version is 2.0.4 on Master branch**  
-**WIP Version: 2.0.5 on WIP-205 branch** 
+**v3.0.0**
 
 # Fresh Starter Kit
 
-A starter framework for building web projects using Sass, Gulp, Pug (optional), and some other modern tools. The goal for this starter kit is to be un-opinionated as possible while giving you easlily configured settings, keep things kinda modular, and be educational.
+A starter framework for building web projects using Yarn, Sass, Gulp, Pug, and some other modern tools. The main goal for this kit is to be get you up and running as fast as possible using the tools and configurations that we use most.
 
 
 ## Requirements
 
 - [Node/NPM](https://nodejs.org/en/)
+- [Yarn](https://yarnpkg.com/en/)
 - [LibSass](http://sass-lang.com/libsass)
 - [Gulp](http://gulpjs.com/)
+
+### To roll our workflow
+- [Gulpy](https://github.com/yisraelgrimes/gulpy): To handle all your build tasks.
+- [Fresh-Scaffold](https://github.com/fresh-scaffold): To set up your dev structure.
+- [Luscious](https://github.com/yisraelgrimes/luscious-sass): For our SASS mixins and functions.
 
 
 ## Features
 
-- Configurable but automated environment setup
+- Uses Yarn instead of NPM to bring in our own git repos as dependencies
+- Automated environment setup
+- Modular so that the Gulp tasks and SASS library are managed independently
 - Live reloading with BrowserSync
-- Sass compiling and Autoprefixer configuration
-- Sass Linting (based on `.sass-lint.yml`
-- Javascript Linting (still need to add lint file)
-- Pug compiling
-- Optimizes final output files
-- The voice of Cleveland Brown (run `gulp boom`)
+- README template for your new project
+- Compiles SASS/Pug
+- Lints SASS/Pug/JS
+- Optimizes production build
+- The voice of [Cleveland Brown](https://goo.gl/ucD1CT). Seriously. Try running `gulp boom` if you don't believe me.
 
 
 ## Installation
 
 ### [Node.js](https://nodejs.org/en/) and [NPM](https://www.npmjs.com/)
 
-- [Windows](http://blog.teamtreehouse.com/install-node-js-npm-windows)
-- Mac OS: I reccomend using [Homebrew](http://brew.sh/). First, install Homebrew:
+- [Windows](https://goo.gl/mcfQkQ)
+- MacOS: Using [Homebrew](http://brew.sh/):
 
 ```Sh
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -46,13 +52,15 @@ Then Node:
 brew install node
 ```
 
+### Yarn
+
+- [Windows](https://goo.gl/2TGGzK)
+- MacOS: `brew install yarn`
+
 ### Gulp
 
-Install Gulp Globally on your machine:
+Install Gulp Globally with NPM: `npm install gulp -g`
 
-```Sh
-npm install gulp -g
-```
 
 ### Get Fresh
 
@@ -64,41 +72,35 @@ git clone https://github.com/yisraelgrimes/fresh.git
 
 ### Dependencies
 
+Installs: [Gulpy](https://github.com/yisraelgrimes/gulpy), our [Fresh-Scaffold](https://github.com/fresh-scaffold), and our SASS kit— [Luscious](https://github.com/yisraelgrimes/luscious-sass)— for you.
+
 ```sh
-cd your-fresh-project && npm install
+cd your/fresh/project && yarn install
 ```
 
-*This will download all your npm/gulp dependencies to the directory: `./node_modules`*
-
+*This downloads all your dependencies to the `./node_modules` directory and sets up initial project dev files in `./dev`.*
 
 
 ## Project Setup
 
 1. Update your info in the `package.json` file.
+2. To update project directory paths, go to `./gulpfile.js`.
+3. To change any project configs, go to `./gulp.options.js`.
+4. Run the default Gulp task to get the party started:
 
-2. Go to `./gulp/_config.options.js` and configure your project in the top section (or use the default settings.) If you want to change any default directory names or file paths, do this in `./gulp/_config.paths.js`.
+	```sh
+	gulp
+	```
 
-3. Initiate your project:
-
-	 ```sh
-	 gulp init
-	 ```
-
-4. Run the default Gulp task to start working:
-
-	 ```sh
-	 gulp
-	 ```
-
-5. When you are satisfied with your development and are ready to send the project to production, run:
+5. When you are ready to create your optimized, production site, run:
 
 	```sh
 	gulp build
 	```
 	
-Something to note with the build command, the output styling will be determined by the buildType variable set in `./gulp/_config.options.js`. 'Static' will produce a completely minified version of the site while 'Dynamic' will minify everything but .html files and will ignore any files/directories that have '@@' in the name. This is done so you can have a static demo of the site, and then run `gulp cms` to produce a version ready to be used in cms templating with dynamic content. 
+Something to note with the build command, the output styling will be determined by the buildType variable set in `./gulp.options.js`. 'Static' will produce a completely minified version of the site while 'Dynamic' will minify everything except HTML files and will ignore any files/directories that have '@@' in the name. This is so that you can have a static demo of the site, and then run `gulp cms` to produce a production version ready to be used in cms templating with dynamic content. 
 
-6. When you are ready to deploy your dev project to Github pages, first run `gulp deploy:setup` to create a gh-pages branch and configure it. After that, all you need to do is run `gulp deploy` from the branch that you want to deploy. Keep in mind that you will need write privileges on the repo to deploy pages. The set up task has only been tested on Mac OS and uses several bash scripts wrapped in 'gulp-shell' so you may want to check them out before running it. The file is `./gulp/shell/ghpages.sh`. The scripts will:
+6. If you want to deploy your project Github pages, first run `gulp deploy:setup` to create a gh-pages branch and configure it. After that, all you need to do is run `gulp deploy` from the branch that you want to deploy. Keep in mind that you will need write privileges on the repo to deploy pages. The setup task has only been tested on Mac OS and uses several bash scripts wrapped in 'gulp-shell' so you may want to check them out before running it. The file is `./gulp/shell/ghpages.sh`. The scripts will:
 	- Create a gh-pages branch.
 	- Create/add a temporary README.md file.
 	- Create/add a .gitignore file and add `node_modules` to the ignore list.
@@ -106,12 +108,14 @@ Something to note with the build command, the output styling will be determined 
 	- Checkout the Master branch.
 
 Running `gulp deploy` will, by default, copy everything from `./build` to be published.
-	
+
 
 ---
 
 ## Changelog
-
+- v2.0.5
+	- Removed the 'tabify' task from gulp.
+	- Minor version bump when moving from Github.
 - v2.0.4
 	- You can now pipe data into your `.pug` files from `./dev/views/data.json` and gulp will auto-reload/run the `views` task and refresh browser when the `.json` file is changed.
 	- Added 'POSTLAUNCH' and '2DO-LATER' tags as defaults to the 'gulp todo' task. These can be changed in `./gulp/_config.options.js`.
@@ -163,16 +167,15 @@ Running `gulp deploy` will, by default, copy everything from `./build` to be pub
 	
 ## Meta
 
-Yisrael Grimes - @GrimesClassic - yisrael@tubemedia.co
+Yisrael Grimes - @GrimesClassic
 
-Distributed under the uncopyright license. Which, isn't actually a license. You can read more about it from [Brian Gardner](https://briangardner.com/uncopyright/) of StudioPress fame.
+Distributed under the uncopyright license. Which, isn't technically a license, but it should be. You can read more about it from [Brian Gardner](https://briangardner.com/uncopyright/) of StudioPress fame.
 
 ---
 
 ## Thanks
 
-This toolkit is based heavily on the works of the following fine people & projects:
+This project is mostly just a bunch of stuff that was taken from of people. These are a few of them:
 - Mina Markham's [Sassy Starter](https://github.com/minamarkham/sassy-starter)
 - [Zell Liew](https://zellwk.com/)
 - [Hugo Giraudel](http://hugogiraudel.com/)
-- All the cool kids that hang out in the Gulp chanel in the [FED's](http://frontenddevelopers.org/) Slack.
